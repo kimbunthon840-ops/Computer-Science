@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Databases & SQL Systems | CS Academy</title>
+  <meta name="description" content="Master Relational SQL, ACID transactions, B+ Tree indexing, normalization (1NF-BCNF), and interactive SQL runner.">
+  <link rel="stylesheet" href="icons.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="responsive.css">
+  <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body>
+
+  <!-- Background Particle Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container navbar-container navbar">
+      <a href="index.html" class="brand-link">
+        <img src="logo.png" alt="CS Academy Logo" class="brand-logo-img">
+        <div class="brand-text">CS <span>Academy</span></div>
+      </a>
+      <nav>
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item has-dropdown">
+            <a href="foundations.html" class="nav-link active">Core Curriculum ▾</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item"><a href="foundations.html">⚡ Foundations & Logic</a></li>
+              <li class="dropdown-item"><a href="data-structures.html">📦 Data Structures</a></li>
+              <li class="dropdown-item"><a href="algorithms.html">⚙️ Algorithms & Visualizer</a></li>
+              <li class="dropdown-item"><a href="programming.html">💻 Programming & Memory</a></li>
+              <li class="dropdown-item"><a href="operating-systems.html">🖥️ Operating Systems</a></li>
+              <li class="dropdown-item"><a href="networking.html">🌐 Computer Networking</a></li>
+              <li class="dropdown-item"><a href="databases.html">🗄️ Databases & SQL</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="specializations.html" class="nav-link">Specializations</a></li>
+          <li class="nav-item"><a href="resources.html" class="nav-link">Resources</a></li>
+          <li class="nav-item"><a href="progress.html" class="nav-link">Dashboard</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <!-- Language Switcher Button -->
+        <button class="lang-switcher-btn" id="lang-toggle" title="Switch Language / ប្តូរភាសា">
+          <span>🇰🇭 ខ្មែរ / EN</span>
+        </button>
+        <button class="search-trigger-btn" id="search-trigger">
+          <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span>Search...</span>
+          <span class="kbd-shortcut">Ctrl K</span>
+        </button>
+        <a href="progress.html" class="progress-pill" id="header-progress-pill">Lvl 1 • 150 XP</a>
+        <button class="icon-btn" id="sfx-toggle" title="Toggle Cyber Sound Effects">🔊</button>
+        <button class="icon-btn" id="theme-toggle" aria-label="Toggle Theme">☀️</button>
+        <button class="mobile-toggle" id="mobile-toggle">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <div>
+        <div class="page-meta-tags" style="margin-bottom: 0.75rem;">
+          <span class="badge badge-emerald">Module 07</span>
+          <span class="badge badge-cyan">Storage Engines & Querying</span>
+          <span class="badge badge-purple">Estimated 55 min</span>
+        </div>
+        <h1 class="page-title">Databases, Storage Engines & SQL</h1>
+        <p class="page-desc">
+          How data persists reliably on disk. Learn ACID transaction isolation, relational normalization (1NF-BCNF), B+ Tree indexing, and practice with our live in-browser SQL simulator.
+        </p>
+      </div>
+      <div class="lesson-action-strip">
+        <button class="btn btn-outline-cyan btn-sm" id="mark-complete-btn" data-topic-id="databases">
+          <span>Mark as Complete (+100 XP)</span>
+        </button>
+        <button class="btn btn-secondary btn-sm" id="bookmark-btn" data-topic-id="databases">
+          <span>☆ Bookmark</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="container" style="padding-bottom: 5rem;">
+
+    <!-- Section 1: Live Interactive SQL Playground -->
+    <section id="sql-runner" style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">1. In-Browser Interactive SQL Runner</h2>
+      <p>
+        Execute SQL queries against our sample academic database. Try modifying the <code>WHERE</code> clause:
+      </p>
+
+      <div class="visualizer-box">
+        <div class="visualizer-header">
+          <div>
+            <h3 style="font-size: 1.25rem; color: var(--cyan); margin-bottom: 0.25rem;">Live SQL Query Execution Console</h3>
+            <p style="font-size: 0.88rem; margin-bottom: 0;">Try: <code>WHERE grade &gt;= 90</code> or <code>WHERE major = 'Computer Science'</code></p>
+          </div>
+          <div>
+            <button class="btn btn-primary btn-sm" id="sql-run-btn">▶ Execute Query</button>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <input type="text" id="sql-query-input" value="SELECT * FROM students WHERE grade >= 90;" style="width: 100%; padding: 0.75rem 1rem; background: #070b14; border: 1px solid var(--border-light); border-radius: var(--radius-sm); color: #38bdf8; font-family: var(--font-mono); font-size: 0.95rem;">
+        </div>
+
+        <div id="sql-results-table" class="cs-table-wrap" style="margin: 0 0 1rem;">
+          <!-- Dynamically populated by main.js -->
+        </div>
+
+        <div id="sql-feedback-msg" style="font-family: var(--font-mono); font-size: 0.85rem;"></div>
+      </div>
+    </section>
+
+    <!-- Section 2: ACID Properties -->
+    <section id="acid" style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">2. ACID Guarantees in Relational Transactions</h2>
+      <div class="grid-4">
+        <div class="card">
+          <span class="badge badge-cyan" style="margin-bottom: 0.5rem;">A</span>
+          <h4 style="font-size: 1.1rem; color: #fff;">Atomicity</h4>
+          <p style="font-size: 0.85rem;">All operations succeed or the entire transaction rolls back cleanly ("All-or-Nothing").</p>
+        </div>
+        <div class="card">
+          <span class="badge badge-purple" style="margin-bottom: 0.5rem;">C</span>
+          <h4 style="font-size: 1.1rem; color: #fff;">Consistency</h4>
+          <p style="font-size: 0.85rem;">Data transitions only from one valid state to another, satisfying all database constraints and triggers.</p>
+        </div>
+        <div class="card">
+          <span class="badge badge-emerald" style="margin-bottom: 0.5rem;">I</span>
+          <h4 style="font-size: 1.1rem; color: #fff;">Isolation</h4>
+          <p style="font-size: 0.85rem;">Concurrent transactions execute without stepping on each other (Read Committed, Repeatable Read, Serializable).</p>
+        </div>
+        <div class="card">
+          <span class="badge badge-amber" style="margin-bottom: 0.5rem;">D</span>
+          <h4 style="font-size: 1.1rem; color: #fff;">Durability</h4>
+          <p style="font-size: 0.85rem;">Once committed, transactions survive power cuts or hardware crashes via Write-Ahead Logs (WAL).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Indexing & B+ Trees -->
+    <section id="indexing" style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">3. Storage Engines & B+ Tree Indexing</h2>
+      <p>
+        Why do relational storage engines (PostgreSQL, MySQL InnoDB) rely on B+ Trees rather than standard Binary Search Trees or Hash Tables?
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h4 style="font-size: 1.15rem; color: var(--cyan); margin-bottom: 0.5rem;">Massive Fanout & Disk Alignment</h4>
+          <p style="font-size: 0.9rem;">
+            A B+ Tree node has hundreds of keys, perfectly matching 4KB/16KB disk page sizes. A tree of height 3 can index over 10 million rows, requiring only 3 disk I/O seeks to reach any record!
+          </p>
+        </div>
+
+        <div class="card">
+          <h4 style="font-size: 1.15rem; color: var(--purple); margin-bottom: 0.5rem;">Linked Leaf Range Scans</h4>
+          <p style="font-size: 0.9rem;">
+            All data records or row pointers reside in leaf nodes, linked sequentially via sibling pointers. Querying ranges like <code>WHERE date BETWEEN '2026-01-01' AND '2026-02-01'</code> executes in lightning-fast linear pointer hops without re-traversing the root!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Quiz -->
+    <section id="quiz">
+      <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem; color: #fff;">Knowledge Check: Databases</h2>
+      <p style="margin-bottom: 1.5rem;">Verify your knowledge of relational schemas, normal forms, and transaction ACID properties.</p>
+      <div class="quiz-widget" id="databases-quiz" data-quiz-category="databases"></div>
+    </section>
+
+  </main>
+
+  <!-- Global Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal">
+    <div class="search-modal-card">
+      <div class="search-input-wrap">
+        <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="search-input" placeholder="Search algorithms, data structures, systems, SQL..." autocomplete="off">
+        <span class="kbd-shortcut">ESC</span>
+      </div>
+      <ul class="search-results-list" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Press <kbd class="kbd-shortcut">ESC</kbd> to exit</span>
+        <span>CS Academy Knowledge Index</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 CS Academy Project. Open source educational platform under MIT License.</div>
+        <div class="status-indicator">
+          <span class="status-dot"></span>
+          <span>Database Engine Ready</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>

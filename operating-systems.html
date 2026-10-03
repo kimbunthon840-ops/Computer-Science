@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Operating Systems & Kernels | CS Academy</title>
+  <meta name="description" content="Explore Process scheduling, context switches, virtual memory paging, multithreading, and deadlock prevention.">
+  <link rel="stylesheet" href="icons.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="responsive.css">
+  <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body>
+
+  <!-- Background Particle Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container navbar-container navbar">
+      <a href="index.html" class="brand-link">
+        <img src="logo.png" alt="CS Academy Logo" class="brand-logo-img">
+        <div class="brand-text">CS <span>Academy</span></div>
+      </a>
+      <nav>
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item has-dropdown">
+            <a href="foundations.html" class="nav-link active">Core Curriculum ▾</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item"><a href="foundations.html">⚡ Foundations & Logic</a></li>
+              <li class="dropdown-item"><a href="data-structures.html">📦 Data Structures</a></li>
+              <li class="dropdown-item"><a href="algorithms.html">⚙️ Algorithms & Visualizer</a></li>
+              <li class="dropdown-item"><a href="programming.html">💻 Programming & Memory</a></li>
+              <li class="dropdown-item"><a href="operating-systems.html">🖥️ Operating Systems</a></li>
+              <li class="dropdown-item"><a href="networking.html">🌐 Computer Networking</a></li>
+              <li class="dropdown-item"><a href="databases.html">🗄️ Databases & SQL</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="specializations.html" class="nav-link">Specializations</a></li>
+          <li class="nav-item"><a href="resources.html" class="nav-link">Resources</a></li>
+          <li class="nav-item"><a href="progress.html" class="nav-link">Dashboard</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <!-- Language Switcher Button -->
+        <button class="lang-switcher-btn" id="lang-toggle" title="Switch Language / ប្តូរភាសា">
+          <span>🇰🇭 ខ្មែរ / EN</span>
+        </button>
+        <button class="search-trigger-btn" id="search-trigger">
+          <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span>Search...</span>
+          <span class="kbd-shortcut">Ctrl K</span>
+        </button>
+        <a href="progress.html" class="progress-pill" id="header-progress-pill">Lvl 1 • 150 XP</a>
+        <button class="icon-btn" id="sfx-toggle" title="Toggle Cyber Sound Effects">🔊</button>
+        <button class="icon-btn" id="theme-toggle" aria-label="Toggle Theme">☀️</button>
+        <button class="mobile-toggle" id="mobile-toggle">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <div>
+        <div class="page-meta-tags" style="margin-bottom: 0.75rem;">
+          <span class="badge badge-cyan">Module 05</span>
+          <span class="badge badge-purple">Kernel & Systems</span>
+          <span class="badge badge-emerald">Estimated 65 min</span>
+        </div>
+        <h1 class="page-title">Operating Systems & Kernels</h1>
+        <p class="page-desc">
+          The software bridge between application code and hardware silicon. Explore preemptive CPU scheduling, virtual memory translation (TLB), inter-process communication, and deadlock synchronization.
+        </p>
+      </div>
+      <div class="lesson-action-strip">
+        <button class="btn btn-outline-cyan btn-sm" id="mark-complete-btn" data-topic-id="operating-systems">
+          <span>Mark as Complete (+100 XP)</span>
+        </button>
+        <button class="btn btn-secondary btn-sm" id="bookmark-btn" data-topic-id="operating-systems">
+          <span>☆ Bookmark</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="container" style="padding-bottom: 5rem;">
+
+    <!-- Section 1: Process Lifecycle -->
+    <section id="processes" style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">1. Process Control Block & Context Switching</h2>
+      <p>
+        An Operating System process represents an active instance of a running program. The kernel manages each process via a data structure called the <strong>Process Control Block (PCB)</strong> containing PID, program counter, CPU registers, memory limits, and open file descriptors.
+      </p>
+
+      <div class="grid-3">
+        <div class="card">
+          <span class="badge badge-cyan" style="margin-bottom: 0.5rem;">Process vs Thread</span>
+          <h4 style="font-size: 1.15rem; color: #fff; margin-bottom: 0.5rem;">Memory Isolation</h4>
+          <p style="font-size: 0.88rem;">
+            Processes possess distinct, isolated virtual memory spaces. Threads within the same process share the same code, data, and heap segments, but each maintain their own independent call stack and registers.
+          </p>
+        </div>
+
+        <div class="card">
+          <span class="badge badge-purple" style="margin-bottom: 0.5rem;">Hardware Interruption</span>
+          <h4 style="font-size: 1.15rem; color: #fff; margin-bottom: 0.5rem;">Context Switching</h4>
+          <p style="font-size: 0.88rem;">
+            When switching between processes, the CPU must save current registers to PCB, load the target process's registers, switch page directory base registers (CR3 in x86), and flush CPU cache lines.
+          </p>
+        </div>
+
+        <div class="card">
+          <span class="badge badge-emerald" style="margin-bottom: 0.5rem;">State Machine</span>
+          <h4 style="font-size: 1.15rem; color: #fff; margin-bottom: 0.5rem;">Process States</h4>
+          <p style="font-size: 0.88rem;">
+            <strong>New</strong> ➔ <strong>Ready</strong> (waiting in queue) ➔ <strong>Running</strong> (on CPU) ➔ <strong>Waiting</strong> (I/O block) ➔ <strong>Terminated</strong> (Zombie cleanup).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: CPU Scheduling Algorithms -->
+    <section id="scheduling" style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">2. CPU Scheduling Policies</h2>
+      <p>
+        The CPU scheduler decides which ready process is allocated the CPU core when an interrupt, I/O wait, or timer tick occurs:
+      </p>
+
+      <div class="cs-table-wrap">
+        <table class="cs-table">
+          <thead>
+            <tr>
+              <th>Scheduler Algorithm</th>
+              <th>Preemptive?</th>
+              <th>Average Wait Time</th>
+              <th>Characteristics & Trade-offs</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>First-Come, First-Served (FCFS)</strong></td>
+              <td>No</td>
+              <td>High</td>
+              <td>Suffers from the <em>Convoy Effect</em> (short jobs wait behind a massive compute-bound job).</td>
+            </tr>
+            <tr>
+              <td><strong>Shortest Job First (SJF)</strong></td>
+              <td>Optional (SRTF)</td>
+              <td>Optimal (Minimum)</td>
+              <td>Requires predicting CPU burst length. Risk of long-job starvation.</td>
+            </tr>
+            <tr>
+              <td><strong>Round Robin (RR)</strong></td>
+              <td>Yes</td>
+              <td>Moderate</td>
+              <td>Each job receives a slice (quantum $q$). Responsive for interactive desktop systems.</td>
+            </tr>
+            <tr>
+              <td><strong>Multi-Level Feedback Queue (MLFQ)</strong></td>
+              <td>Yes</td>
+              <td>Low</td>
+              <td>Dynamically demotes CPU-heavy processes and prioritizes interactive I/O-bound jobs.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Gantt Chart Visual Simulator -->
+      <div class="visualizer-box">
+        <h3 style="font-size: 1.2rem; color: var(--cyan); margin-bottom: 0.75rem;">Round Robin Gantt Chart Simulation (Quantum = 4ms)</h3>
+        <p style="font-size: 0.88rem;">Demonstrating time-sliced execution across 3 concurrent processes:</p>
+        <div style="display: flex; height: 50px; border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 0.75rem; border: 1px solid var(--border-light);">
+          <div style="flex: 4; background: #06b6d4; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #000; font-family: var(--font-mono);">P1 [0-4ms]</div>
+          <div style="flex: 4; background: #8b5cf6; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #fff; font-family: var(--font-mono);">P2 [4-8ms]</div>
+          <div style="flex: 4; background: #10b981; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #000; font-family: var(--font-mono);">P3 [8-12ms]</div>
+          <div style="flex: 2; background: #06b6d4; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #000; font-family: var(--font-mono);">P1 [12-14ms]</div>
+        </div>
+        <div style="font-size: 0.82rem; color: var(--text-muted); font-family: var(--font-mono);">
+          Round-robin interleaves burst requests, preventing process starvation and ensuring sub-10ms response latency.
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Virtual Memory & Paging -->
+    <section id="memory" style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">3. Virtual Memory, Paging & TLB</h2>
+      <p>
+        Virtual memory gives each application the illusion of a contiguous, private memory space, decoupled from physical RAM fragmentation.
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h4 style="font-size: 1.15rem; color: var(--cyan); margin-bottom: 0.6rem;">Paging & Translation (MMU)</h4>
+          <p style="font-size: 0.9rem;">
+            Virtual address space is split into fixed-size <strong>Pages</strong> (typically 4KB). Physical RAM is divided into matching <strong>Frames</strong>. The CPU Memory Management Unit (MMU) translates virtual page numbers to physical frames using hierarchical Page Tables.
+          </p>
+        </div>
+
+        <div class="card">
+          <h4 style="font-size: 1.15rem; color: var(--emerald); margin-bottom: 0.6rem;">Translation Lookaside Buffer (TLB)</h4>
+          <p style="font-size: 0.9rem;">
+            Accessing RAM on every address translation is too slow. The TLB is an ultra-fast on-die hardware associative cache storing the most recent virtual-to-physical address mappings, achieving 99%+ hit rates.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Concurrency & Deadlocks -->
+    <section id="deadlocks" style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">4. Concurrency & Coffman Deadlock Conditions</h2>
+      <p>
+        A Deadlock is a state where a set of threads are permanently blocked because each thread holds a lock that another thread needs. A deadlock can <em>only</em> occur if ALL four Coffman conditions hold simultaneously:
+      </p>
+
+      <div class="grid-4">
+        <div class="card">
+          <span class="badge badge-rose" style="margin-bottom: 0.5rem;">Condition 1</span>
+          <h4 style="font-size: 1rem; color: #fff;">Mutual Exclusion</h4>
+          <p style="font-size: 0.85rem;">At least one resource must be held in a non-shareable mode (only one thread can use it at a time).</p>
+        </div>
+        <div class="card">
+          <span class="badge badge-rose" style="margin-bottom: 0.5rem;">Condition 2</span>
+          <h4 style="font-size: 1rem; color: #fff;">Hold and Wait</h4>
+          <p style="font-size: 0.85rem;">A thread holds at least one resource and is waiting to acquire additional resources held by others.</p>
+        </div>
+        <div class="card">
+          <span class="badge badge-rose" style="margin-bottom: 0.5rem;">Condition 3</span>
+          <h4 style="font-size: 1rem; color: #fff;">No Preemption</h4>
+          <p style="font-size: 0.85rem;">Resources cannot be forcibly confiscated; they can only be released voluntarily by the holding thread.</p>
+        </div>
+        <div class="card">
+          <span class="badge badge-rose" style="margin-bottom: 0.5rem;">Condition 4</span>
+          <h4 style="font-size: 1rem; color: #fff;">Circular Wait</h4>
+          <p style="font-size: 0.85rem;">A closed chain of threads exists such that each thread waits for a resource held by the next thread in the cycle.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Quiz -->
+    <section id="quiz">
+      <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem; color: #fff;">Knowledge Check: Operating Systems</h2>
+      <p style="margin-bottom: 1.5rem;">Confirm your understanding of kernels, scheduling algorithms, and deadlock elimination.</p>
+      <div class="quiz-widget" id="os-quiz" data-quiz-category="operating-systems"></div>
+    </section>
+
+  </main>
+
+  <!-- Global Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal">
+    <div class="search-modal-card">
+      <div class="search-input-wrap">
+        <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="search-input" placeholder="Search algorithms, data structures, systems, SQL..." autocomplete="off">
+        <span class="kbd-shortcut">ESC</span>
+      </div>
+      <ul class="search-results-list" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Press <kbd class="kbd-shortcut">ESC</kbd> to exit</span>
+        <span>CS Academy Knowledge Index</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 CS Academy Project. Open source educational platform under MIT License.</div>
+        <div class="status-indicator">
+          <span class="status-dot"></span>
+          <span>Kernel Monitor Active</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>

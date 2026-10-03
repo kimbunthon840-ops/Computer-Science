@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curated Resources & Cheat Sheets | CS Academy</title>
+  <meta name="description" content="Seminal Computer Science research papers, classic textbooks (CLRS, Tanenbaum, SICP), and downloadable cheat sheets.">
+  <link rel="stylesheet" href="icons.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="responsive.css">
+  <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body>
+
+  <!-- Background Particle Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container navbar-container navbar">
+      <a href="index.html" class="brand-link">
+        <img src="logo.png" alt="CS Academy Logo" class="brand-logo-img">
+        <div class="brand-text">CS <span>Academy</span></div>
+      </a>
+      <nav>
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item has-dropdown">
+            <a href="foundations.html" class="nav-link">Core Curriculum ▾</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item"><a href="foundations.html">⚡ Foundations & Logic</a></li>
+              <li class="dropdown-item"><a href="data-structures.html">📦 Data Structures</a></li>
+              <li class="dropdown-item"><a href="algorithms.html">⚙️ Algorithms & Visualizer</a></li>
+              <li class="dropdown-item"><a href="programming.html">💻 Programming & Memory</a></li>
+              <li class="dropdown-item"><a href="operating-systems.html">🖥️ Operating Systems</a></li>
+              <li class="dropdown-item"><a href="networking.html">🌐 Computer Networking</a></li>
+              <li class="dropdown-item"><a href="databases.html">🗄️ Databases & SQL</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="specializations.html" class="nav-link">Specializations</a></li>
+          <li class="nav-item"><a href="resources.html" class="nav-link active">Resources</a></li>
+          <li class="nav-item"><a href="progress.html" class="nav-link">Dashboard</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <!-- Language Switcher Button -->
+        <button class="lang-switcher-btn" id="lang-toggle" title="Switch Language / ប្តូរភាសា">
+          <span>🇰🇭 ខ្មែរ / EN</span>
+        </button>
+        <button class="search-trigger-btn" id="search-trigger">
+          <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span>Search...</span>
+          <span class="kbd-shortcut">Ctrl K</span>
+        </button>
+        <a href="progress.html" class="progress-pill" id="header-progress-pill">Lvl 1 • 150 XP</a>
+        <button class="icon-btn" id="sfx-toggle" title="Toggle Cyber Sound Effects">🔊</button>
+        <button class="icon-btn" id="theme-toggle" aria-label="Toggle Theme">☀️</button>
+        <button class="mobile-toggle" id="mobile-toggle">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <div>
+        <div class="page-meta-tags" style="margin-bottom: 0.75rem;">
+          <span class="badge badge-cyan">Curated Library</span>
+          <span class="badge badge-purple">Academic & Industry</span>
+        </div>
+        <h1 class="page-title">Textbooks, Papers & Cheat Sheets</h1>
+        <p class="page-desc">
+          Accelerate your studies with essential textbooks, landmark papers that shaped computing, and printable engineering cheat sheets.
+        </p>
+      </div>
+      <div class="lesson-action-strip">
+        <button class="btn btn-primary btn-sm" onclick="window.print()">
+          <span>🖨️ Print / Save PDF</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="container" style="padding-bottom: 5rem;">
+
+    <!-- Section 1: Classic Textbooks -->
+    <section id="books" style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">1. Seminal Computer Science Textbooks</h2>
+      <p>Hand-picked, university-standard texts recommended for self-taught mastery:</p>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="badge badge-cyan" style="margin-bottom: 0.5rem;">Algorithms</div>
+          <h3 style="font-size: 1.15rem; color: #fff; margin-bottom: 0.4rem;">Introduction to Algorithms (CLRS)</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem;">T. Cormen, C. Leiserson, R. Rivest, C. Stein</p>
+          <p style="font-size: 0.88rem;">The definitive encyclopedic reference on sorting, graph algorithms, dynamic programming, and computational complexity.</p>
+        </div>
+
+        <div class="card">
+          <div class="badge badge-purple" style="margin-bottom: 0.5rem;">Systems</div>
+          <h3 style="font-size: 1.15rem; color: #fff; margin-bottom: 0.4rem;">Computer Systems: A Programmer's Perspective (CS:APP)</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem;">R. Bryant & D. O'Hallaron (Carnegie Mellon)</p>
+          <p style="font-size: 0.88rem;">Bridge hardware and software: machine-level representations, processor architecture, cache hierarchies, and virtual memory.</p>
+        </div>
+
+        <div class="card">
+          <div class="badge badge-emerald" style="margin-bottom: 0.5rem;">Distributed Systems</div>
+          <h3 style="font-size: 1.15rem; color: #fff; margin-bottom: 0.4rem;">Designing Data-Intensive Applications</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem;">Martin Kleppmann</p>
+          <p style="font-size: 0.88rem;">The gold standard modern guide to storage engines, distributed consensus, stream processing, and data replication.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Seminal Research Papers -->
+    <section id="papers" style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">2. Seminal Research Papers That Built Computing</h2>
+      <div class="cs-table-wrap">
+        <table class="cs-table">
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Paper Title</th>
+              <th>Author(s)</th>
+              <th>Significance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1936</strong></td>
+              <td><em>On Computable Numbers, with an Application to the Entscheidungsproblem</em></td>
+              <td>Alan Turing</td>
+              <td>Introduced the concept of the Universal Turing Machine and formal computability.</td>
+            </tr>
+            <tr>
+              <td><strong>1948</strong></td>
+              <td><em>A Mathematical Theory of Communication</em></td>
+              <td>Claude Shannon</td>
+              <td>Founded Information Theory and defined the bit as the fundamental unit of data.</td>
+            </tr>
+            <tr>
+              <td><strong>1978</strong></td>
+              <td><em>Time, Clocks, and the Ordering of Events in a Distributed System</em></td>
+              <td>Leslie Lamport</td>
+              <td>Introduced logical clocks to reason about concurrent events across distributed nodes.</td>
+            </tr>
+            <tr>
+              <td><strong>2017</strong></td>
+              <td><em>Attention Is All You Need</em></td>
+              <td>Vaswani et al. (Google Brain)</td>
+              <td>Introduced the Transformer neural network architecture that powers modern generative AI.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 3: Interactive & Printable Cheat Sheets -->
+    <section id="cheatsheets" style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">3. Engineering Reference Cheat Sheets</h2>
+
+      <div class="grid-2">
+        <div class="card">
+          <h4 style="font-size: 1.15rem; color: var(--cyan); margin-bottom: 0.75rem;">Git Version Control Essentials</h4>
+          <div class="code-window" style="margin: 0;">
+            <div class="code-header"><span class="code-title">Terminal</span></div>
+            <div class="code-body">
+              <pre><span class="tok-comment"># Stage and commit changes</span>
+git add -A &amp;&amp; git commit -m "feat: optimize tree traversal"
+
+<span class="tok-comment"># Interactive branch rebase against main</span>
+git fetch origin &amp;&amp; git rebase origin/main
+
+<span class="tok-comment"># Cleanly discard unstaged working directory edits</span>
+git restore .
+
+<span class="tok-comment"># View compact commit graph</span>
+git log --oneline --graph --all</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 style="font-size: 1.15rem; color: var(--purple); margin-bottom: 0.75rem;">Linux Shell / Bash Power Commands</h4>
+          <div class="code-window" style="margin: 0;">
+            <div class="code-header"><span class="code-title">Bash Terminal</span></div>
+            <div class="code-body">
+              <pre><span class="tok-comment"># Find files larger than 100MB</span>
+find / -type f -size +100M -exec ls -lh {} +
+
+<span class="tok-comment"># Monitor listening network ports</span>
+ss -tulwn
+
+<span class="tok-comment"># Inspect top CPU-consuming processes</span>
+top -o %CPU
+
+<span class="tok-comment"># Stream logs with regex filter</span>
+journalctl -u nginx.service -f | grep -E "ERROR|404"</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Global Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal">
+    <div class="search-modal-card">
+      <div class="search-input-wrap">
+        <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="search-input" placeholder="Search algorithms, data structures, systems, SQL..." autocomplete="off">
+        <span class="kbd-shortcut">ESC</span>
+      </div>
+      <ul class="search-results-list" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Press <kbd class="kbd-shortcut">ESC</kbd> to exit</span>
+        <span>CS Academy Knowledge Index</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 CS Academy Project. Open source educational platform under MIT License.</div>
+        <div class="status-indicator">
+          <span class="status-dot"></span>
+          <span>Resources Synchronized</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>

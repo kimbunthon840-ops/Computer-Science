@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foundations & Discrete Math | CS Academy</title>
+  <meta name="description" content="Master binary numbers, two's complement, Boolean algebra, logic gates, and Big-O computational complexity with interactive tools.">
+  <link rel="stylesheet" href="icons.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="responsive.css">
+  <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body>
+
+  <!-- Background Particle Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container navbar-container navbar">
+      <a href="index.html" class="brand-link">
+        <img src="logo.png" alt="CS Academy Logo" class="brand-logo-img">
+        <div class="brand-text">CS <span>Academy</span></div>
+      </a>
+      <nav>
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item has-dropdown">
+            <a href="foundations.html" class="nav-link active">Core Curriculum ▾</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item"><a href="foundations.html">⚡ Foundations & Logic</a></li>
+              <li class="dropdown-item"><a href="data-structures.html">📦 Data Structures</a></li>
+              <li class="dropdown-item"><a href="algorithms.html">⚙️ Algorithms & Visualizer</a></li>
+              <li class="dropdown-item"><a href="programming.html">💻 Programming & Memory</a></li>
+              <li class="dropdown-item"><a href="operating-systems.html">🖥️ Operating Systems</a></li>
+              <li class="dropdown-item"><a href="networking.html">🌐 Computer Networking</a></li>
+              <li class="dropdown-item"><a href="databases.html">🗄️ Databases & SQL</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="specializations.html" class="nav-link">Specializations</a></li>
+          <li class="nav-item"><a href="resources.html" class="nav-link">Resources</a></li>
+          <li class="nav-item"><a href="progress.html" class="nav-link">Dashboard</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <!-- Language Switcher Button -->
+        <button class="lang-switcher-btn" id="lang-toggle" title="Switch Language / ប្តូរភាសា">
+          <span>🇰🇭 ខ្មែរ / EN</span>
+        </button>
+        <button class="search-trigger-btn" id="search-trigger">
+          <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span>Search...</span>
+          <span class="kbd-shortcut">Ctrl K</span>
+        </button>
+        <a href="progress.html" class="progress-pill" id="header-progress-pill">Lvl 1 • 150 XP</a>
+        <button class="icon-btn" id="sfx-toggle" title="Toggle Cyber Sound Effects">🔊</button>
+        <button class="icon-btn" id="theme-toggle" aria-label="Toggle Theme">☀️</button>
+        <button class="mobile-toggle" id="mobile-toggle">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <div>
+        <div class="page-meta-tags" style="margin-bottom: 0.75rem;">
+          <span class="badge badge-cyan">Module 01</span>
+          <span class="badge badge-purple">Core Foundations</span>
+          <span class="badge badge-emerald">Estimated 45 min</span>
+        </div>
+        <h1 class="page-title">Foundations & Discrete Mathematics</h1>
+        <p class="page-desc">
+          Understand the mathematical bedrock of computing: number representation, bitwise operations, Boolean algebra, logic gates, and asymptotic Big-O runtime analysis.
+        </p>
+      </div>
+      <div class="lesson-action-strip">
+        <button class="btn btn-outline-cyan btn-sm" id="mark-complete-btn" data-topic-id="foundations">
+          <span>Mark as Complete (+100 XP)</span>
+        </button>
+        <button class="btn btn-secondary btn-sm" id="bookmark-btn" data-topic-id="foundations">
+          <span>☆ Bookmark</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="container" style="padding-bottom: 5rem;">
+    <!-- Section 1: Number Systems -->
+    <section id="numbers" style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">1. Number Systems & Binary Representation</h2>
+      <p>
+        At physical silicon levels, digital computers process state through high and low voltage transitions representing binary digits (bits: <code>0</code> and <code>1</code>).
+        Numbers are expressed in base-2 (Binary), base-10 (Decimal), and base-16 (Hexadecimal).
+      </p>
+
+      <!-- Live Interactive 8-Bit Simulator -->
+      <div class="visualizer-box">
+        <div class="visualizer-header">
+          <div>
+            <h3 style="font-size: 1.2rem; color: var(--cyan); margin-bottom: 0.25rem;">Interactive 8-Bit Number Converter</h3>
+            <p style="font-size: 0.88rem; margin-bottom: 0;">Type a decimal number (0-255) or click individual bits to toggle between 0 and 1.</p>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <label for="base-dec-input" style="font-weight: 600; font-size: 0.9rem;">Decimal:</label>
+            <input type="number" id="base-dec-input" min="0" max="255" value="42" style="width: 85px; padding: 0.4rem 0.6rem; background: var(--bg-input); border: 1px solid var(--border-light); border-radius: var(--radius-sm); color: #fff; font-family: var(--font-mono); font-size: 1rem;">
+          </div>
+        </div>
+
+        <div style="background: rgba(0,0,0,0.3); border-radius: var(--radius-sm); padding: 1.5rem; text-align: center;">
+          <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem;">Click any bit to flip (MSB b7 to LSB b0):</div>
+          <div id="interactive-bits" style="display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;"></div>
+
+          <div style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; border-top: 1px solid var(--border-glass); padding-top: 1.25rem;">
+            <div>
+              <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Binary Output:</span>
+              <div id="base-bin-output" style="font-family: var(--font-mono); font-size: 1.5rem; color: var(--cyan); font-weight: 700;">00101010</div>
+            </div>
+            <div>
+              <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Hexadecimal Output:</span>
+              <div id="base-hex-output" style="font-family: var(--font-mono); font-size: 1.5rem; color: var(--purple); font-weight: 700;">0x2A</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="font-size: 1.15rem; margin-bottom: 0.6rem; color: var(--cyan);">Two's Complement (Signed Integers)</h3>
+          <p style="font-size: 0.92rem;">
+            Standard method to represent negative numbers. To negate a number:
+            <br>1. Invert all bits (One's complement: <code>~X</code>)
+            <br>2. Add 1 (<code>~X + 1</code>)
+          </p>
+          <div class="code-window" style="margin: 0.5rem 0 0;">
+            <div class="code-header"><span class="code-title">Two's Complement Example (-5)</span></div>
+            <div class="code-body">
+              <pre>+5  = 0000 0101
+NOT = 1111 1010  (invert bits)
++1  = 1111 1011  (-5 in 8-bit)</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="font-size: 1.15rem; margin-bottom: 0.6rem; color: var(--purple);">Bitwise Operations in Systems</h3>
+          <p style="font-size: 0.92rem;">
+            Direct silicon bit manipulation for low-level speed, network masking, and hardware register control:
+          </p>
+          <ul style="padding-left: 1.25rem; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.8;">
+            <li><code>AND (&amp;)</code>: Masking bits (e.g. <code>x &amp; 1</code> checks parity)</li>
+            <li><code>OR (|)</code>: Setting specific bit flags</li>
+            <li><code>XOR (^)</code>: Toggling bits and fast in-place swaps</li>
+            <li><code>Shifts (&lt;&lt;, &gt;&gt;)</code>: Fast multiplication / division by powers of 2</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Boolean Algebra & Logic Gates -->
+    <section id="logic" style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">2. Boolean Algebra & Logic Gates</h2>
+      <p>
+        Boolean algebra is the formal calculus of truth values (<code>1 / TRUE</code> and <code>0 / FALSE</code>). In 1937, Claude Shannon proved in his master's thesis that electrical relay switches can compute any Boolean algebra equation.
+      </p>
+
+      <div class="cs-table-wrap">
+        <table class="cs-table">
+          <thead>
+            <tr>
+              <th>Gate</th>
+              <th>Symbol</th>
+              <th>Truth Table Expression</th>
+              <th>Behavior</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>AND</strong></td>
+              <td><code>A · B</code></td>
+              <td><code>1 AND 1 = 1</code>, else <code>0</code></td>
+              <td>Outputs 1 only if BOTH inputs are high.</td>
+            </tr>
+            <tr>
+              <td><strong>OR</strong></td>
+              <td><code>A + B</code></td>
+              <td><code>0 OR 0 = 0</code>, else <code>1</code></td>
+              <td>Outputs 1 if AT LEAST ONE input is high.</td>
+            </tr>
+            <tr>
+              <td><strong>NOT</strong></td>
+              <td><code>¬A / A'</code></td>
+              <td><code>NOT 0 = 1, NOT 1 = 0</code></td>
+              <td>Inverts the single input state.</td>
+            </tr>
+            <tr>
+              <td><strong>XOR</strong></td>
+              <td><code>A ⊕ B</code></td>
+              <td><code>1 ⊕ 0 = 1, 1 ⊕ 1 = 0</code></td>
+              <td>Outputs 1 if inputs are DIFFERENT (odd parity).</td>
+            </tr>
+            <tr>
+              <td><strong>NAND</strong></td>
+              <td><code>¬(A · B)</code></td>
+              <td><code>NOT (A AND B)</code></td>
+              <td>Universal gate: can build ANY other logic gate!</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card" style="margin-top: 1.5rem;">
+        <h3 style="font-size: 1.15rem; color: var(--emerald); margin-bottom: 0.5rem;">De Morgan's Laws</h3>
+        <p style="font-size: 0.92rem; margin-bottom: 0.5rem;">
+          Crucial for simplifying compiler boolean expressions and reducing hardware gate counts:
+        </p>
+        <div style="font-family: var(--font-mono); font-size: 1rem; color: #fff; background: rgba(0,0,0,0.3); padding: 0.85rem 1.25rem; border-radius: var(--radius-sm); border-left: 3px solid var(--emerald);">
+          Law 1: ¬(A ∧ B) ≡ (¬A) ∨ (¬B) &nbsp;&nbsp;|&nbsp;&nbsp; "NOT (A AND B) is equal to (NOT A) OR (NOT B)"<br>
+          Law 2: ¬(A ∨ B) ≡ (¬A) ∧ (¬B) &nbsp;&nbsp;|&nbsp;&nbsp; "NOT (A OR B) is equal to (NOT A) AND (NOT B)"
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Big-O Complexity -->
+    <section id="big-o" style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">3. Asymptotic Notation (Big-O, Big-Ω, Big-Θ)</h2>
+      <p>
+        Asymptotic analysis evaluates how algorithm runtime and memory scale as input size <code>n</code> approaches infinity, independent of hardware clocks or compilers.
+      </p>
+
+      <div class="grid-3" style="margin-bottom: 2rem;">
+        <div class="card">
+          <span class="badge badge-rose" style="margin-bottom: 0.5rem;">Upper Bound</span>
+          <h4 style="font-size: 1.2rem; color: var(--rose);">Big-O (O)</h4>
+          <p style="font-size: 0.88rem;">Represents the absolute worst-case growth rate: <code>f(n) ≤ c · g(n)</code> for all <code>n ≥ n₀</code>.</p>
+        </div>
+        <div class="card">
+          <span class="badge badge-emerald" style="margin-bottom: 0.5rem;">Lower Bound</span>
+          <h4 style="font-size: 1.2rem; color: var(--emerald);">Big-Omega (Ω)</h4>
+          <p style="font-size: 0.88rem;">Represents the best-case floor: <code>f(n) ≥ c · g(n)</code>. For comparison sorts, the lower bound is Ω(n log n).</p>
+        </div>
+        <div class="card">
+          <span class="badge badge-purple" style="margin-bottom: 0.5rem;">Tight Bound</span>
+          <h4 style="font-size: 1.2rem; color: var(--purple);">Big-Theta (Θ)</h4>
+          <p style="font-size: 0.88rem;">Binds both upper and lower limits asymptotically: <code>c₁·g(n) ≤ f(n) ≤ c₂·g(n)</code>.</p>
+        </div>
+      </div>
+
+      <div class="cs-table-wrap">
+        <table class="cs-table">
+          <thead>
+            <tr>
+              <th>Notation</th>
+              <th>Name</th>
+              <th>n = 10</th>
+              <th>n = 1,000</th>
+              <th>Canonical Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>O(1)</code></td>
+              <td>Constant Time</td>
+              <td>1</td>
+              <td>1</td>
+              <td>Hash table lookup, array index access</td>
+            </tr>
+            <tr>
+              <td><code>O(log n)</code></td>
+              <td>Logarithmic Time</td>
+              <td>3</td>
+              <td>10</td>
+              <td>Binary search on sorted array</td>
+            </tr>
+            <tr>
+              <td><code>O(n)</code></td>
+              <td>Linear Time</td>
+              <td>10</td>
+              <td>1,000</td>
+              <td>Linear scan, counting array elements</td>
+            </tr>
+            <tr>
+              <td><code>O(n log n)</code></td>
+              <td>Linearithmic Time</td>
+              <td>33</td>
+              <td>10,000</td>
+              <td>Merge Sort, Quick Sort (average)</td>
+            </tr>
+            <tr>
+              <td><code>O(n²)</code></td>
+              <td>Quadratic Time</td>
+              <td>100</td>
+              <td>1,000,000</td>
+              <td>Bubble sort, nested two-loop search</td>
+            </tr>
+            <tr>
+              <td><code>O(2ⁿ)</code></td>
+              <td>Exponential Time</td>
+              <td>1,024</td>
+              <td>1.07 × 10³⁰¹</td>
+              <td>Brute-force subset sum, traveling salesperson</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 4: Interactive Quiz Assessment -->
+    <section id="quiz">
+      <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem; color: #fff;">Knowledge Check: Foundations</h2>
+      <p style="margin-bottom: 1.5rem;">Answer the questions below to test your mastery and earn <strong>+100 XP</strong> for your dashboard profile.</p>
+
+      <div class="quiz-widget" id="foundations-quiz" data-quiz-category="foundations">
+        <!-- Injected dynamically by quiz.js -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal">
+    <div class="search-modal-card">
+      <div class="search-input-wrap">
+        <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="search-input" placeholder="Search algorithms, data structures, systems, SQL..." autocomplete="off">
+        <span class="kbd-shortcut">ESC</span>
+      </div>
+      <ul class="search-results-list" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Press <kbd class="kbd-shortcut">ESC</kbd> to exit</span>
+        <span>CS Academy Knowledge Index</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 CS Academy Project. Open source educational platform under MIT License.</div>
+        <div class="status-indicator">
+          <span class="status-dot"></span>
+          <span>Foundations Module Ready</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>

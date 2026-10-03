@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Dashboard & Progress | CS Academy</title>
+  <meta name="description" content="Track your computer science progress, XP points, study streak, unlocked achievement badges, and personal bookmarks.">
+  <link rel="stylesheet" href="icons.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="responsive.css">
+  <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body>
+
+  <!-- Background Particle Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container navbar-container navbar">
+      <a href="index.html" class="brand-link">
+        <img src="logo.png" alt="CS Academy Logo" class="brand-logo-img">
+        <div class="brand-text">CS <span>Academy</span></div>
+      </a>
+      <nav>
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item has-dropdown">
+            <a href="foundations.html" class="nav-link">Core Curriculum ▾</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item"><a href="foundations.html">⚡ Foundations & Logic</a></li>
+              <li class="dropdown-item"><a href="data-structures.html">📦 Data Structures</a></li>
+              <li class="dropdown-item"><a href="algorithms.html">⚙️ Algorithms & Visualizer</a></li>
+              <li class="dropdown-item"><a href="programming.html">💻 Programming & Memory</a></li>
+              <li class="dropdown-item"><a href="operating-systems.html">🖥️ Operating Systems</a></li>
+              <li class="dropdown-item"><a href="networking.html">🌐 Computer Networking</a></li>
+              <li class="dropdown-item"><a href="databases.html">🗄️ Databases & SQL</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="specializations.html" class="nav-link">Specializations</a></li>
+          <li class="nav-item"><a href="resources.html" class="nav-link">Resources</a></li>
+          <li class="nav-item"><a href="progress.html" class="nav-link active">Dashboard</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <!-- Language Switcher Button -->
+        <button class="lang-switcher-btn" id="lang-toggle" title="Switch Language / ប្តូរភាសា">
+          <span>🇰🇭 ខ្មែរ / EN</span>
+        </button>
+        <button class="search-trigger-btn" id="search-trigger">
+          <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span>Search...</span>
+          <span class="kbd-shortcut">Ctrl K</span>
+        </button>
+        <a href="progress.html" class="progress-pill" id="header-progress-pill">Lvl 1 • 150 XP</a>
+        <button class="icon-btn" id="sfx-toggle" title="Toggle Cyber Sound Effects">🔊</button>
+        <button class="icon-btn" id="theme-toggle" aria-label="Toggle Theme">☀️</button>
+        <button class="mobile-toggle" id="mobile-toggle">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <div>
+        <div class="page-meta-tags" style="margin-bottom: 0.75rem;">
+          <span class="badge badge-emerald">User Profile</span>
+          <span class="badge badge-purple">Real-time Stats</span>
+        </div>
+        <h1 class="page-title">Learning Dashboard & Mastery Tracker</h1>
+        <p class="page-desc">
+          Your personalized progress hub. Track accumulated XP points, review completed modules, unlock achievement badges, and tackle on-demand quizzes.
+        </p>
+      </div>
+      <div class="lesson-action-strip">
+        <button class="btn btn-outline-cyan btn-sm" id="export-progress-btn">
+          <span>💾 Export Data</span>
+        </button>
+        <button class="btn btn-secondary btn-sm" id="reset-progress-btn" style="color: var(--rose);">
+          <span>Reset Stats</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="container" style="padding-bottom: 5rem;">
+
+    <!-- Section 1: Metric Stats Cards -->
+    <section class="grid-4" style="margin-bottom: 3.5rem;">
+      <div class="card">
+        <span class="badge badge-cyan" style="margin-bottom: 0.5rem;">Experience</span>
+        <h3 id="dash-xp" style="font-size: 2.2rem; color: var(--cyan); margin-bottom: 0.25rem;">150 XP</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0;">Total XP Points Earned</p>
+      </div>
+
+      <div class="card">
+        <span class="badge badge-purple" style="margin-bottom: 0.5rem;">Rank</span>
+        <h3 id="dash-level" style="font-size: 2.2rem; color: var(--purple); margin-bottom: 0.25rem;">Level 1</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0;">Junior Computer Scientist</p>
+      </div>
+
+      <div class="card">
+        <span class="badge badge-emerald" style="margin-bottom: 0.5rem;">Consistency</span>
+        <h3 id="dash-streak" style="font-size: 2.2rem; color: var(--emerald); margin-bottom: 0.25rem;">3 Days 🔥</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0;">Current Active Streak</p>
+      </div>
+
+      <div class="card">
+        <span class="badge badge-amber" style="margin-bottom: 0.5rem;">Curriculum</span>
+        <h3 id="dash-pct" style="font-size: 2.2rem; color: var(--amber); margin-bottom: 0.25rem;">25%</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0;">Core Syllabus Completed</p>
+      </div>
+    </section>
+
+    <!-- Section 2: Achievement Badges -->
+    <section style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">Unlocked Badges & Honors</h2>
+      <div class="grid-3">
+        <div class="card" style="border-color: var(--cyan);">
+          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">⚡</div>
+          <span class="badge badge-cyan" style="margin-bottom: 0.4rem;">Unlocked</span>
+          <h3 style="font-size: 1.15rem; color: #fff; margin-bottom: 0.4rem;">Binary Pioneer</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Completed the Foundations module and mastered two's complement arithmetic.</p>
+        </div>
+
+        <div class="card" id="badge-ds" style="opacity: 0.7;">
+          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📦</div>
+          <span class="badge badge-secondary" style="margin-bottom: 0.4rem;">In Progress</span>
+          <h3 style="font-size: 1.15rem; color: #fff; margin-bottom: 0.4rem;">Data Architect</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Master continuous memory arrays, linked nodes, and binary search trees.</p>
+        </div>
+
+        <div class="card" id="badge-algo" style="opacity: 0.7;">
+          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">⚙️</div>
+          <span class="badge badge-secondary" style="margin-bottom: 0.4rem;">In Progress</span>
+          <h3 style="font-size: 1.15rem; color: #fff; margin-bottom: 0.4rem;">Algorithm Conqueror</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Complete sorting visualizer simulations and score 100% on graph searches.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Bookmarks & Completed Modules -->
+    <section style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">Your Saved & Completed Lessons</h2>
+      <div class="card">
+        <div id="dashboard-lists" style="display: flex; flex-direction: column; gap: 1rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: rgba(255,255,255,0.03); border-radius: var(--radius-sm);">
+            <div>
+              <strong style="color: #fff;">Foundations & Discrete Mathematics</strong>
+              <div style="font-size: 0.8rem; color: var(--emerald);">✓ Completed (+100 XP Earned)</div>
+            </div>
+            <a href="foundations.html" class="btn btn-outline-cyan btn-sm">Review Lesson →</a>
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: rgba(255,255,255,0.03); border-radius: var(--radius-sm);">
+            <div>
+              <strong style="color: #fff;">Algorithms & Live Visualizer</strong>
+              <div style="font-size: 0.8rem; color: var(--cyan);">📌 Saved to Bookmarks</div>
+            </div>
+            <a href="algorithms.html" class="btn btn-outline-cyan btn-sm">Resume Lesson →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Daily Assessment Arena -->
+    <section>
+      <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem; color: #fff;">On-Demand Quiz Arena</h2>
+      <p style="margin-bottom: 1.5rem;">Choose any discipline below to launch a live interactive assessment and level up your XP:</p>
+
+      <div style="display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+        <button class="btn btn-sm btn-primary quiz-cat-btn" data-cat="foundations">Foundations</button>
+        <button class="btn btn-sm btn-secondary quiz-cat-btn" data-cat="data-structures">Data Structures</button>
+        <button class="btn btn-sm btn-secondary quiz-cat-btn" data-cat="algorithms">Algorithms</button>
+        <button class="btn btn-sm btn-secondary quiz-cat-btn" data-cat="operating-systems">Operating Systems</button>
+        <button class="btn btn-sm btn-secondary quiz-cat-btn" data-cat="networking">Networking</button>
+        <button class="btn btn-sm btn-secondary quiz-cat-btn" data-cat="databases">Databases</button>
+      </div>
+
+      <div class="quiz-widget" id="dashboard-arena-quiz" data-quiz-category="foundations"></div>
+    </section>
+
+  </main>
+
+  <!-- Global Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal">
+    <div class="search-modal-card">
+      <div class="search-input-wrap">
+        <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="search-input" placeholder="Search algorithms, data structures, systems, SQL..." autocomplete="off">
+        <span class="kbd-shortcut">ESC</span>
+      </div>
+      <ul class="search-results-list" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Press <kbd class="kbd-shortcut">ESC</kbd> to exit</span>
+        <span>CS Academy Knowledge Index</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 CS Academy Project. Open source educational platform under MIT License.</div>
+        <div class="status-indicator">
+          <span class="status-dot"></span>
+          <span>Profile Synchronized Locally</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="quiz.js"></script>
+  <script>
+    // Dashboard Specific Script
+    document.addEventListener('DOMContentLoaded', () => {
+      const prog = typeof getProgress === 'function' ? getProgress() : { xp: 150, level: 1, streak: 3, completedLessons: ['foundations'] };
+      
+      const xpElem = document.getElementById('dash-xp');
+      const lvlElem = document.getElementById('dash-level');
+      const streakElem = document.getElementById('dash-streak');
+      const pctElem = document.getElementById('dash-pct');
+
+      if (xpElem) xpElem.textContent = `${prog.xp} XP`;
+      if (lvlElem) lvlElem.textContent = `Level ${prog.level}`;
+      if (streakElem) streakElem.textContent = `${prog.streak} Days 🔥`;
+      if (pctElem) {
+        const pct = Math.min(100, Math.round((prog.completedLessons.length / 8) * 100));
+        pctElem.textContent = `${pct}%`;
+      }
+
+      // Quiz category switcher
+      document.querySelectorAll('.quiz-cat-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.quiz-cat-btn').forEach(b => {
+            b.classList.remove('btn-primary');
+            b.classList.add('btn-secondary');
+          });
+          btn.classList.remove('btn-secondary');
+          btn.classList.add('btn-primary');
+
+          const cat = btn.getAttribute('data-cat');
+          new QuizController('dashboard-arena-quiz', cat);
+        });
+      });
+
+      // Export Progress
+      const exportBtn = document.getElementById('export-progress-btn');
+      if (exportBtn) {
+        exportBtn.addEventListener('click', () => {
+          const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(prog, null, 2));
+          const dl = document.createElement('a');
+          dl.setAttribute("href", dataStr);
+          dl.setAttribute("download", "cs_academy_progress.json");
+          dl.click();
+          showToast('Progress data exported to JSON file! 📁');
+        });
+      }
+
+      // Reset Progress
+      const resetBtn = document.getElementById('reset-progress-btn');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          if (confirm('Are you sure you want to reset your XP, level, and completed lessons?')) {
+            localStorage.removeItem('cs_learning_progress');
+            window.location.reload();
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

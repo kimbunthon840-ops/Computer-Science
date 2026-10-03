@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 Page Not Found | CS Academy</title>
+  <meta name="description" content="Error 404: Virtual address translation failed. The requested page does not exist in memory.">
+  <link rel="stylesheet" href="icons.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="responsive.css">
+  <link rel="icon" type="image/png" href="logo.png">
+  <style>
+    .terminal-container {
+      background: #050811;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      box-shadow: 0 0 35px rgba(6, 182, 212, 0.25);
+      max-width: 800px;
+      margin: 3rem auto;
+      overflow: hidden;
+      font-family: var(--font-mono);
+      backdrop-filter: blur(16px);
+    }
+    .terminal-header {
+      background: #0d1322;
+      padding: 0.65rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .terminal-body {
+      padding: 1.5rem;
+      min-height: 280px;
+      color: #38bdf8;
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+    .terminal-prompt-line {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .terminal-input {
+      background: transparent;
+      border: none;
+      color: #a7f3d0;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      outline: none;
+      flex: 1;
+    }
+    .glitch-code {
+      font-size: 4.5rem;
+      font-weight: 800;
+      color: var(--rose);
+      text-shadow: 0 0 25px rgba(244, 63, 94, 0.7);
+      font-family: var(--font-heading);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Particle Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container navbar-container navbar">
+      <a href="index.html" class="brand-link">
+        <img src="logo.png" alt="CS Academy Logo" class="brand-logo-img">
+        <div class="brand-text">CS <span>Academy</span></div>
+      </a>
+      <nav>
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link" data-i18n="nav_home">Home</a></li>
+          <li class="nav-item has-dropdown">
+            <a href="foundations.html" class="nav-link" data-i18n="nav_curriculum">Core Curriculum ▾</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item"><a href="foundations.html" data-i18n="nav_foundations">⚡ Foundations & Logic</a></li>
+              <li class="dropdown-item"><a href="data-structures.html" data-i18n="nav_ds">📦 Data Structures</a></li>
+              <li class="dropdown-item"><a href="algorithms.html" data-i18n="nav_algo">⚙️ Algorithms & Visualizer</a></li>
+              <li class="dropdown-item"><a href="programming.html" data-i18n="nav_prog">💻 Programming & Memory</a></li>
+              <li class="dropdown-item"><a href="operating-systems.html" data-i18n="nav_os">🖥️ Operating Systems</a></li>
+              <li class="dropdown-item"><a href="networking.html" data-i18n="nav_net">🌐 Computer Networking</a></li>
+              <li class="dropdown-item"><a href="databases.html" data-i18n="nav_db">🗄️ Databases & SQL</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="specializations.html" class="nav-link" data-i18n="nav_specs">Specializations</a></li>
+          <li class="nav-item"><a href="resources.html" class="nav-link" data-i18n="nav_res">Resources</a></li>
+          <li class="nav-item"><a href="progress.html" class="nav-link" data-i18n="nav_dash">Dashboard</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link" data-i18n="nav_about">About</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link" data-i18n="nav_contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <!-- Language Switcher Button -->
+        <button class="lang-switcher-btn" id="lang-toggle" title="Switch Language / ប្តូរភាសា">
+          <span>🇰🇭 ខ្មែរ / EN</span>
+        </button>
+
+        <button class="search-trigger-btn" id="search-trigger">
+          <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span>Search...</span>
+          <span class="kbd-shortcut">Ctrl K</span>
+        </button>
+        <a href="progress.html" class="progress-pill" id="header-progress-pill">Lvl 1 • 150 XP</a>
+        <button class="icon-btn" id="sfx-toggle" title="Toggle Cyber Sound Effects">🔊</button>
+        <button class="icon-btn" id="theme-toggle" aria-label="Toggle Theme">☀️</button>
+        <button class="mobile-toggle" id="mobile-toggle">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Terminal Area -->
+  <main class="container" style="padding: 4rem 1.5rem 5rem; text-align: center;">
+    <div class="glitch-code">404</div>
+    <h1 style="font-size: 2.1rem; margin-bottom: 0.5rem; color: #fff;">Page Fault: Address Not Found</h1>
+    <p style="max-width: 600px; margin: 0 auto 1.5rem; color: var(--text-secondary);">
+      The CPU MMU encountered an unmapped virtual memory page. The requested resource does not exist in the routing table.
+    </p>
+
+    <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap;">
+      <a href="index.html" class="btn btn-primary">← Return to Safety (Home)</a>
+      <a href="foundations.html" class="btn btn-secondary">Explore Foundations</a>
+    </div>
+
+    <!-- Interactive Retro Terminal -->
+    <div class="terminal-container" style="text-align: left;">
+      <div class="terminal-header">
+        <div class="code-dots">
+          <span class="code-dot dot-red"></span>
+          <span class="code-dot dot-yellow"></span>
+          <span class="code-dot dot-green"></span>
+        </div>
+        <span style="font-size: 0.78rem; color: var(--text-muted);">bash — 80x24</span>
+        <span style="font-size: 0.78rem; color: var(--emerald);">tty0</span>
+      </div>
+
+      <div class="terminal-body" id="term-body">
+        <div>[kernel] TRAP: Page fault at virtual address 0x0000000000000404</div>
+        <div>[kernel] CPU status: RIP=0x7fff8040, RSP=0x7fffef90, CR2=0x00000404</div>
+        <div style="color: var(--amber); margin-top: 0.5rem;">Interactive Rescue Terminal loaded. Type <strong>help</strong> or <strong>ls</strong>:</div>
+        <div id="term-history"></div>
+
+        <div class="terminal-prompt-line">
+          <span style="color: var(--cyan); font-weight: 700;">visitor@cs-academy:~$</span>
+          <input type="text" id="term-input" class="terminal-input" autofocus autocomplete="off" spellcheck="false">
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Global Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal">
+    <div class="search-modal-card">
+      <div class="search-input-wrap">
+        <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="search-input" placeholder="Search algorithms, data structures, systems, SQL..." autocomplete="off">
+        <span class="kbd-shortcut">ESC</span>
+      </div>
+      <ul class="search-results-list" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Press <kbd class="kbd-shortcut">ESC</kbd> to exit</span>
+        <span>CS Academy Knowledge Index</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 CS Academy Project. Open source educational platform under MIT License.</div>
+        <div class="status-indicator">
+          <span class="status-dot" style="background: var(--rose); box-shadow: 0 0 8px var(--rose);"></span>
+          <span>404 Handler Active</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="quiz.js"></script>
+  <script>
+    const termInput = document.getElementById('term-input');
+    const termHistory = document.getElementById('term-history');
+
+    if (termInput && termHistory) {
+      termInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          const cmd = termInput.value.trim().toLowerCase();
+          termInput.value = '';
+
+          const line = document.createElement('div');
+          line.style.margin = '0.35rem 0';
+          line.innerHTML = `<span style="color:var(--cyan)">visitor@cs-academy:~$</span> ${cmd}`;
+          termHistory.appendChild(line);
+
+          let resp = '';
+          if (cmd === 'help') {
+            resp = `Available commands:<br>
+  - <strong>home</strong>: Navigate to index.html<br>
+  - <strong>ls</strong>: List available curriculum pages<br>
+  - <strong>clear</strong>: Clear terminal history<br>
+  - <strong>about</strong>: View academy mission<br>
+  - <strong>whoami</strong>: Current user session details`;
+          } else if (cmd === 'ls') {
+            resp = `index.html &nbsp;&nbsp; foundations.html &nbsp;&nbsp; data-structures.html<br>
+algorithms.html &nbsp;&nbsp; programming.html &nbsp;&nbsp; operating-systems.html<br>
+networking.html &nbsp;&nbsp; databases.html &nbsp;&nbsp; specializations.html<br>
+resources.html &nbsp;&nbsp; progress.html &nbsp;&nbsp; about.html &nbsp;&nbsp; contact.html`;
+          } else if (cmd === 'home') {
+            window.location.href = 'index.html';
+            return;
+          } else if (cmd === 'clear') {
+            termHistory.innerHTML = '';
+            return;
+          } else if (cmd === 'whoami') {
+            resp = `visitor (UID 1000) on CS Academy Linux 6.8.0-generic`;
+          } else if (cmd === 'about') {
+            window.location.href = 'about.html';
+            return;
+          } else if (cmd === '') {
+            return;
+          } else {
+            resp = `bash: command not found: ${cmd}. Type 'help' for available commands.`;
+          }
+
+          const respDiv = document.createElement('div');
+          respDiv.style.color = '#cbd5e1';
+          respDiv.style.marginBottom = '0.5rem';
+          respDiv.innerHTML = resp;
+          termHistory.appendChild(respDiv);
+
+          termInput.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

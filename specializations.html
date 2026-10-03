@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Specializations & Career Roadmaps | CS Academy</title>
+  <meta name="description" content="Explore advanced Computer Science tracks: Artificial Intelligence, Cybersecurity, Cloud Distributed Systems, and Quantum Computing.">
+  <link rel="stylesheet" href="icons.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="responsive.css">
+  <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body>
+
+  <!-- Background Particle Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container navbar-container navbar">
+      <a href="index.html" class="brand-link">
+        <img src="logo.png" alt="CS Academy Logo" class="brand-logo-img">
+        <div class="brand-text">CS <span>Academy</span></div>
+      </a>
+      <nav>
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item has-dropdown">
+            <a href="foundations.html" class="nav-link">Core Curriculum ▾</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item"><a href="foundations.html">⚡ Foundations & Logic</a></li>
+              <li class="dropdown-item"><a href="data-structures.html">📦 Data Structures</a></li>
+              <li class="dropdown-item"><a href="algorithms.html">⚙️ Algorithms & Visualizer</a></li>
+              <li class="dropdown-item"><a href="programming.html">💻 Programming & Memory</a></li>
+              <li class="dropdown-item"><a href="operating-systems.html">🖥️ Operating Systems</a></li>
+              <li class="dropdown-item"><a href="networking.html">🌐 Computer Networking</a></li>
+              <li class="dropdown-item"><a href="databases.html">🗄️ Databases & SQL</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="specializations.html" class="nav-link active">Specializations</a></li>
+          <li class="nav-item"><a href="resources.html" class="nav-link">Resources</a></li>
+          <li class="nav-item"><a href="progress.html" class="nav-link">Dashboard</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <!-- Language Switcher Button -->
+        <button class="lang-switcher-btn" id="lang-toggle" title="Switch Language / ប្តូរភាសា">
+          <span>🇰🇭 ខ្មែរ / EN</span>
+        </button>
+        <button class="search-trigger-btn" id="search-trigger">
+          <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span>Search...</span>
+          <span class="kbd-shortcut">Ctrl K</span>
+        </button>
+        <a href="progress.html" class="progress-pill" id="header-progress-pill">Lvl 1 • 150 XP</a>
+        <button class="icon-btn" id="sfx-toggle" title="Toggle Cyber Sound Effects">🔊</button>
+        <button class="icon-btn" id="theme-toggle" aria-label="Toggle Theme">☀️</button>
+        <button class="mobile-toggle" id="mobile-toggle">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <div>
+        <div class="page-meta-tags" style="margin-bottom: 0.75rem;">
+          <span class="badge badge-amber">Advanced Tracks</span>
+          <span class="badge badge-cyan">Frontiers of Computing</span>
+        </div>
+        <h1 class="page-title">Specializations & Industry Roadmaps</h1>
+        <p class="page-desc">
+          Translate core CS fundamentals into high-impact fields: Artificial Intelligence, Modern Cryptography, Distributed Cloud Engineering, and Quantum Information Science.
+        </p>
+      </div>
+      <div class="lesson-action-strip">
+        <button class="btn btn-outline-cyan btn-sm" id="mark-complete-btn" data-topic-id="specializations">
+          <span>Mark as Complete (+100 XP)</span>
+        </button>
+        <button class="btn btn-secondary btn-sm" id="bookmark-btn" data-topic-id="specializations">
+          <span>☆ Bookmark</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="container" style="padding-bottom: 5rem;">
+
+    <div class="grid-2" style="margin-bottom: 3.5rem;">
+
+      <!-- Track 1: AI & ML -->
+      <div class="card" id="ai">
+        <div class="card-icon">🧠</div>
+        <span class="badge badge-purple" style="margin-bottom: 0.5rem;">Machine Intelligence</span>
+        <h2 style="font-size: 1.45rem; color: #fff; margin-bottom: 0.75rem;">Artificial Intelligence & Deep Learning</h2>
+        <p style="font-size: 0.92rem;">
+          Build neural systems that generalize from vast datasets. Learn mathematical optimization, backpropagation, and transformer attention.
+        </p>
+
+        <h4 style="font-size: 0.95rem; color: var(--cyan); margin: 1rem 0 0.4rem; text-transform: uppercase;">Key Core Concepts</h4>
+        <ul style="padding-left: 1.2rem; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6;">
+          <li>Matrix calculus, gradient descent, Adam optimizer</li>
+          <li>Convolutional Networks & Computer Vision</li>
+          <li>Multi-head self-attention & Transformer architecture</li>
+          <li>RLHF (Reinforcement Learning from Human Feedback)</li>
+        </ul>
+
+        <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-glass);">
+          <span style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">Industry Stack:</span>
+          <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
+            <span class="badge badge-cyan">PyTorch</span>
+            <span class="badge badge-purple">CUDA</span>
+            <span class="badge badge-emerald">JAX</span>
+            <span class="badge badge-amber">Hugging Face</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Track 2: Cybersecurity & Cryptography -->
+      <div class="card" id="security">
+        <div class="card-icon emerald">🔒</div>
+        <span class="badge badge-emerald" style="margin-bottom: 0.5rem;">Defensive & Offensive</span>
+        <h2 style="font-size: 1.45rem; color: #fff; margin-bottom: 0.75rem;">Cybersecurity & Cryptography</h2>
+        <p style="font-size: 0.92rem;">
+          Protect digital infrastructure and analyze threat models. Explore mathematical cryptosystems, reverse engineering, and low-level exploit analysis.
+        </p>
+
+        <h4 style="font-size: 0.95rem; color: var(--cyan); margin: 1rem 0 0.4rem; text-transform: uppercase;">Key Core Concepts</h4>
+        <ul style="padding-left: 1.2rem; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6;">
+          <li>Symmetric (AES-256-GCM) & Asymmetric (RSA, Ed25519)</li>
+          <li>Zero-Knowledge Proofs (ZK-SNARKs) & Hash functions</li>
+          <li>Memory corruption: Stack buffer overflows & ROP chains</li>
+          <li>Zero-Trust network architecture & identity federation</li>
+        </ul>
+
+        <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-glass);">
+          <span style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">Industry Stack:</span>
+          <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
+            <span class="badge badge-emerald">Ghidra</span>
+            <span class="badge badge-cyan">Wireshark</span>
+            <span class="badge badge-purple">Rust</span>
+            <span class="badge badge-amber">Burp Suite</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Track 3: Cloud & Distributed Systems -->
+      <div class="card" id="cloud">
+        <div class="card-icon amber">☁️</div>
+        <span class="badge badge-amber" style="margin-bottom: 0.5rem;">Planet-Scale Systems</span>
+        <h2 style="font-size: 1.45rem; color: #fff; margin-bottom: 0.75rem;">Cloud & Distributed Systems</h2>
+        <p style="font-size: 0.92rem;">
+          Orchestrate fault-tolerant clusters serving hundreds of millions of concurrent queries. Master consensus, replication, and high-availability patterns.
+        </p>
+
+        <h4 style="font-size: 0.95rem; color: var(--cyan); margin: 1rem 0 0.4rem; text-transform: uppercase;">Key Core Concepts</h4>
+        <ul style="padding-left: 1.2rem; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6;">
+          <li>CAP Theorem & PACELC trade-offs</li>
+          <li>Consensus protocols: Raft & Paxos leader election</li>
+          <li>Eventual consistency & Vector Clocks</li>
+          <li>Microservices, gRPC protobufs, and distributed tracing</li>
+        </ul>
+
+        <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-glass);">
+          <span style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">Industry Stack:</span>
+          <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
+            <span class="badge badge-amber">Kubernetes</span>
+            <span class="badge badge-cyan">Docker</span>
+            <span class="badge badge-purple">Terraform</span>
+            <span class="badge badge-emerald">Kafka</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Track 4: Quantum Computing -->
+      <div class="card" id="quantum">
+        <div class="card-icon purple">⚛️</div>
+        <span class="badge badge-cyan" style="margin-bottom: 0.5rem;">Physics & Logic</span>
+        <h2 style="font-size: 1.45rem; color: #fff; margin-bottom: 0.75rem;">Quantum Computing</h2>
+        <p style="font-size: 0.92rem;">
+          Harness quantum mechanical phenomena—superposition and entanglement—to achieve exponential speedups over classical Turing machines.
+        </p>
+
+        <h4 style="font-size: 0.95rem; color: var(--cyan); margin: 1rem 0 0.4rem; text-transform: uppercase;">Key Core Concepts</h4>
+        <ul style="padding-left: 1.2rem; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6;">
+          <li>Bloch sphere representation of Qubits</li>
+          <li>Quantum logic gates: Hadamard (H), Pauli-X, CNOT</li>
+          <li>Shor's polynomial-time integer factorization algorithm</li>
+          <li>Grover's quadratic unstructured database search</li>
+        </ul>
+
+        <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-glass);">
+          <span style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">Industry Stack:</span>
+          <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
+            <span class="badge badge-purple">Qiskit</span>
+            <span class="badge badge-cyan">Cirq</span>
+            <span class="badge badge-emerald">PennyLane</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Global Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal">
+    <div class="search-modal-card">
+      <div class="search-input-wrap">
+        <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="search-input" placeholder="Search algorithms, data structures, systems, SQL..." autocomplete="off">
+        <span class="kbd-shortcut">ESC</span>
+      </div>
+      <ul class="search-results-list" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Press <kbd class="kbd-shortcut">ESC</kbd> to exit</span>
+        <span>CS Academy Knowledge Index</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 CS Academy Project. Open source educational platform under MIT License.</div>
+        <div class="status-indicator">
+          <span class="status-dot"></span>
+          <span>Curriculum Updated</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Computer Networking & Protocols | CS Academy</title>
+  <meta name="description" content="Explore the OSI 7-layer model, TCP/IP handshakes, DNS resolution architecture, HTTP/3 QUIC, and CIDR subnetting.">
+  <link rel="stylesheet" href="icons.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="responsive.css">
+  <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body>
+
+  <!-- Background Particle Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container navbar-container navbar">
+      <a href="index.html" class="brand-link" id="brand-logo">
+        <img src="logo.png" alt="CS Academy Logo" class="brand-logo-img">
+        <div class="brand-text">CS <span>Academy</span></div>
+      </a>
+      <nav>
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link" data-i18n="nav_home">Home</a></li>
+          <li class="nav-item has-dropdown">
+            <a href="foundations.html" class="nav-link active" data-i18n="nav_curriculum">Core Curriculum ▾</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item"><a href="foundations.html" data-i18n="nav_foundations">⚡ Foundations & Logic</a></li>
+              <li class="dropdown-item"><a href="data-structures.html" data-i18n="nav_ds">📦 Data Structures</a></li>
+              <li class="dropdown-item"><a href="algorithms.html" data-i18n="nav_algo">⚙️ Algorithms & Visualizer</a></li>
+              <li class="dropdown-item"><a href="programming.html" data-i18n="nav_prog">💻 Programming & Memory</a></li>
+              <li class="dropdown-item"><a href="operating-systems.html" data-i18n="nav_os">🖥️ Operating Systems</a></li>
+              <li class="dropdown-item"><a href="networking.html" class="active" data-i18n="nav_net">🌐 Computer Networking</a></li>
+              <li class="dropdown-item"><a href="databases.html" data-i18n="nav_db">🗄️ Databases & SQL</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="specializations.html" class="nav-link" data-i18n="nav_specs">Specializations</a></li>
+          <li class="nav-item"><a href="resources.html" class="nav-link" data-i18n="nav_res">Resources</a></li>
+          <li class="nav-item"><a href="progress.html" class="nav-link" data-i18n="nav_dash">Dashboard</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link" data-i18n="nav_about">About</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link" data-i18n="nav_contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <!-- Language Switcher Button (Khmer / English) -->
+        <button class="lang-switcher-btn" id="lang-toggle" title="Switch Language / ប្តូរភាសា">
+          <span>🇰🇭 ខ្មែរ / EN</span>
+        </button>
+
+        <button class="search-trigger-btn" id="search-trigger" title="Search Curriculum (Ctrl+K)">
+          <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span data-i18n="search_btn">Search...</span>
+          <span class="kbd-shortcut">Ctrl K</span>
+        </button>
+
+        <a href="progress.html" class="progress-pill" id="header-progress-pill" title="Your XP & Level">
+          <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <span>Lvl 1 • 170 XP</span>
+        </a>
+
+        <button class="icon-btn" id="sfx-toggle" title="Toggle Cyber Sound Effects">🔊</button>
+
+        <button class="icon-btn" id="theme-toggle" title="Toggle Theme" aria-label="Toggle Light/Dark Theme">
+          <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Navigation Menu">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <div>
+        <div class="page-meta-tags" style="margin-bottom: 0.75rem;">
+          <span class="badge badge-purple">Module 06</span>
+          <span class="badge badge-cyan">Distributed Network Stack</span>
+          <span class="badge badge-emerald">Estimated 50 min</span>
+        </div>
+        <h1 class="page-title">Computer Networking & Distributed Protocols</h1>
+        <p class="page-desc">
+          How billions of nodes communicate globally. Understand the 7-Layer OSI model, TCP reliable delivery vs UDP, DNS authoritative trees, HTTP/3 QUIC, and IPv4/IPv6 CIDR routing.
+        </p>
+      </div>
+      <div class="lesson-action-strip">
+        <button class="btn btn-outline-cyan btn-sm" id="mark-complete-btn" data-topic-id="networking">
+          <span>Mark as Complete (+100 XP)</span>
+        </button>
+        <button class="btn btn-secondary btn-sm" id="bookmark-btn" data-topic-id="networking">
+          <span>☆ Bookmark</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="container" style="padding-bottom: 5rem;">
+
+    <!-- Section 1: OSI 7-Layer Model -->
+    <section id="osi" style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">1. The 7-Layer OSI & TCP/IP Model</h2>
+      <p>
+        Network communication uses modular abstraction layers. As data descends the stack, each layer prepends a header containing metadata (encapsulation):
+      </p>
+
+      <div class="accordion">
+        <div class="accordion-item open">
+          <div class="accordion-header">
+            <span>Layer 7: Application Layer (HTTP/3, DNS, SSH, SMTP)</span>
+            <span class="accordion-icon">▾</span>
+          </div>
+          <div class="accordion-content">
+            <p style="font-size: 0.9rem; margin-bottom: 0;">
+              Interfaces directly with client applications. Generates raw payload data (e.g. JSON HTTP response, DNS query for domain IP).
+            </p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <span>Layer 4: Transport Layer (TCP vs UDP)</span>
+            <span class="accordion-icon">▾</span>
+          </div>
+          <div class="accordion-content">
+            <p style="font-size: 0.9rem; margin-bottom: 0;">
+              Manages end-to-end communication and port multiplexing. <strong>TCP</strong> provides sequenced, guaranteed delivery with congestion control. <strong>UDP</strong> provides lightweight, connectionless datagram transmission for video streaming and gaming.
+            </p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <span>Layer 3: Network Layer (IPv4, IPv6, ICMP, Routers)</span>
+            <span class="accordion-icon">▾</span>
+          </div>
+          <div class="accordion-content">
+            <p style="font-size: 0.9rem; margin-bottom: 0;">
+              Handles logical host addressing and routing across autonomous systems (AS) via protocols like BGP and OSPF. Routers make forwarding decisions based on destination IP.
+            </p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <span>Layer 2: Data Link Layer (Ethernet Frames, MAC, Switches)</span>
+            <span class="accordion-icon">▾</span>
+          </div>
+          <div class="accordion-content">
+            <p style="font-size: 0.9rem; margin-bottom: 0;">
+              Transfers data frames between physically adjacent nodes on the same local subnet using 48-bit hardware MAC addresses. Bridges and switches operate here.
+            </p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <span>Layer 1: Physical Layer (Cables, Fiber Optics, Wi-Fi Radio)</span>
+            <span class="accordion-icon">▾</span>
+          </div>
+          <div class="accordion-content">
+            <p style="font-size: 0.9rem; margin-bottom: 0;">
+              Transmits raw unstructured bits as light pulses down glass fiber or electromagnetic radio waves through air.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: HTTP Evolution & Handshakes -->
+    <section id="http" style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">2. Evolution of Web Protocols (HTTP/1.1 ➔ HTTP/2 ➔ HTTP/3)</h2>
+      <div class="grid-3">
+        <div class="card">
+          <div class="badge badge-amber" style="margin-bottom: 0.5rem;">Legacy Standard</div>
+          <h4 style="font-size: 1.15rem; color: #fff; margin-bottom: 0.5rem;">HTTP/1.1 (1997)</h4>
+          <ul style="padding-left: 1.2rem; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">
+            <li>Plaintext ASCII protocol.</li>
+            <li>Suffers from <strong>Head-of-Line Blocking</strong> (only one request per TCP connection at a time).</li>
+            <li>Requires multiple parallel TCP sockets.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="badge badge-cyan" style="margin-bottom: 0.5rem;">Multiplexing</div>
+          <h4 style="font-size: 1.15rem; color: #fff; margin-bottom: 0.5rem;">HTTP/2 (2015)</h4>
+          <ul style="padding-left: 1.2rem; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">
+            <li>Binary framing layer over single TCP stream.</li>
+            <li>Multiplexes dozens of concurrent requests.</li>
+            <li>HPACK header compression.</li>
+            <li>Still blocked if underlying TCP packet drops.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="badge badge-emerald" style="margin-bottom: 0.5rem;">QUIC / UDP</div>
+          <h4 style="font-size: 1.15rem; color: #fff; margin-bottom: 0.5rem;">HTTP/3 (Modern)</h4>
+          <ul style="padding-left: 1.2rem; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">
+            <li>Runs on <strong>QUIC</strong> over UDP.</li>
+            <li>Zero head-of-line blocking across streams.</li>
+            <li>0-RTT handshake reconnection.</li>
+            <li>Seamless connection migration between Wi-Fi and 5G.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: CIDR Subnetting -->
+    <section id="subnetting" style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">3. IP Addressing & CIDR Subnetting Reference</h2>
+      <p>
+        Classless Inter-Domain Routing (CIDR) uses slash notation (<code>/N</code>) where <code>N</code> specifies the number of bits in the network prefix.
+      </p>
+
+      <div class="cs-table-wrap">
+        <table class="cs-table">
+          <thead>
+            <tr>
+              <th>CIDR Prefix</th>
+              <th>Subnet Mask</th>
+              <th>Total Addresses ($2^{32-N}$)</th>
+              <th>Usable Host IPs</th>
+              <th>Common Use Case</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>/24</code></td>
+              <td><code>255.255.255.0</code></td>
+              <td>256</td>
+              <td><strong>254</strong></td>
+              <td>Standard home & office LANs</td>
+            </tr>
+            <tr>
+              <td><code>/28</code></td>
+              <td><code>255.255.255.240</code></td>
+              <td>16</td>
+              <td><strong>14</strong></td>
+              <td>Small cloud VPC database subnets</td>
+            </tr>
+            <tr>
+              <td><code>/30</code></td>
+              <td><code>255.255.255.252</code></td>
+              <td>4</td>
+              <td><strong>2</strong></td>
+              <td>Point-to-point router uplink links</td>
+            </tr>
+            <tr>
+              <td><code>/16</code></td>
+              <td><code>255.255.0.0</code></td>
+              <td>65,536</td>
+              <td><strong>65,534</strong></td>
+              <td>Large enterprise or university campuses</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 4: Quiz -->
+    <section id="quiz">
+      <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem; color: #fff;">Knowledge Check: Networking</h2>
+      <p style="margin-bottom: 1.5rem;">Test your grasp of the transport layer, OSI model, and IP routing.</p>
+      <div class="quiz-widget" id="networking-quiz" data-quiz-category="networking"></div>
+    </section>
+
+  </main>
+
+  <!-- Global Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal">
+    <div class="search-modal-card">
+      <div class="search-input-wrap">
+        <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="search-input" placeholder="Search algorithms, data structures, systems, SQL..." autocomplete="off">
+        <span class="kbd-shortcut">ESC</span>
+      </div>
+      <ul class="search-results-list" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Press <kbd class="kbd-shortcut">ESC</kbd> to exit</span>
+        <span>CS Academy Knowledge Index</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 CS Academy Project. Open source educational platform under MIT License.</div>
+        <div class="status-indicator">
+          <span class="status-dot"></span>
+          <span>Protocols Operational</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>

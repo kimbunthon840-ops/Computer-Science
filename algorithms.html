@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Algorithms & Visualizer | CS Academy</title>
+  <meta name="description" content="Step-by-step interactive sorting visualizer, graph traversals (Dijkstra, BFS, DFS), and Dynamic Programming mastery.">
+  <link rel="stylesheet" href="icons.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="responsive.css">
+  <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body>
+
+  <!-- Background Particle Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container navbar-container navbar">
+      <a href="index.html" class="brand-link">
+        <img src="logo.png" alt="CS Academy Logo" class="brand-logo-img">
+        <div class="brand-text">CS <span>Academy</span></div>
+      </a>
+      <nav>
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item has-dropdown">
+            <a href="foundations.html" class="nav-link active">Core Curriculum ▾</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item"><a href="foundations.html">⚡ Foundations & Logic</a></li>
+              <li class="dropdown-item"><a href="data-structures.html">📦 Data Structures</a></li>
+              <li class="dropdown-item"><a href="algorithms.html">⚙️ Algorithms & Visualizer</a></li>
+              <li class="dropdown-item"><a href="programming.html">💻 Programming & Memory</a></li>
+              <li class="dropdown-item"><a href="operating-systems.html">🖥️ Operating Systems</a></li>
+              <li class="dropdown-item"><a href="networking.html">🌐 Computer Networking</a></li>
+              <li class="dropdown-item"><a href="databases.html">🗄️ Databases & SQL</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="specializations.html" class="nav-link">Specializations</a></li>
+          <li class="nav-item"><a href="resources.html" class="nav-link">Resources</a></li>
+          <li class="nav-item"><a href="progress.html" class="nav-link">Dashboard</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <!-- Language Switcher Button -->
+        <button class="lang-switcher-btn" id="lang-toggle" title="Switch Language / ប្តូរភាសា">
+          <span>🇰🇭 ខ្មែរ / EN</span>
+        </button>
+        <button class="search-trigger-btn" id="search-trigger">
+          <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span>Search...</span>
+          <span class="kbd-shortcut">Ctrl K</span>
+        </button>
+        <a href="progress.html" class="progress-pill" id="header-progress-pill">Lvl 1 • 150 XP</a>
+        <button class="icon-btn" id="sfx-toggle" title="Toggle Cyber Sound Effects">🔊</button>
+        <button class="icon-btn" id="theme-toggle" aria-label="Toggle Theme">☀️</button>
+        <button class="mobile-toggle" id="mobile-toggle">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <div>
+        <div class="page-meta-tags" style="margin-bottom: 0.75rem;">
+          <span class="badge badge-emerald">Module 03</span>
+          <span class="badge badge-cyan">Visual Algorithmics</span>
+          <span class="badge badge-purple">Estimated 75 min</span>
+        </div>
+        <h1 class="page-title">Algorithms & Problem Solving</h1>
+        <p class="page-desc">
+          Witness algorithms execute in real time. Dissect Divide and Conquer, Greedy heuristics, Dijkstra's shortest path, and Dynamic Programming memoization.
+        </p>
+      </div>
+      <div class="lesson-action-strip">
+        <button class="btn btn-outline-cyan btn-sm" id="mark-complete-btn" data-topic-id="algorithms">
+          <span>Mark as Complete (+100 XP)</span>
+        </button>
+        <button class="btn btn-secondary btn-sm" id="bookmark-btn" data-topic-id="algorithms">
+          <span>☆ Bookmark</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="container" style="padding-bottom: 5rem;">
+
+    <!-- Section 1: Live Sorting Visualizer -->
+    <section id="sorting" style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">1. Interactive Sorting Visualizer</h2>
+      <p>
+        Watch array elements compare, swap, and settle into sorted partitions. The yellow bars highlight active comparisons, while green indicates verified sorted order.
+      </p>
+
+      <div class="visualizer-box" id="visualizer">
+        <div class="visualizer-header">
+          <div>
+            <h3 style="font-size: 1.25rem; color: var(--cyan); margin-bottom: 0.25rem;">Live Algorithm Execution Canvas</h3>
+            <p style="font-size: 0.88rem; margin-bottom: 0;">Select an algorithm and run live execution steps.</p>
+          </div>
+          <div class="visualizer-controls">
+            <select id="sort-algo-select" style="padding: 0.5rem 0.85rem; background: var(--bg-input); border: 1px solid var(--border-light); border-radius: var(--radius-sm); color: #fff; font-family: var(--font-heading); font-size: 0.9rem;">
+              <option value="bubble">Bubble Sort — O(n²)</option>
+              <option value="selection">Selection Sort — O(n²)</option>
+            </select>
+            <button class="btn btn-primary btn-sm" id="sort-play-btn">▶ Run Algorithm</button>
+            <button class="btn btn-secondary btn-sm" id="sort-shuffle-btn">🔀 Shuffle Array</button>
+          </div>
+        </div>
+
+        <div class="visualizer-canvas-wrap" id="sort-canvas">
+          <!-- Dynamically populated by main.js -->
+        </div>
+
+        <div class="visualizer-log" id="sort-log">
+          Algorithm visualizer initialized. Press 'Run Algorithm' to start execution.
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Divide and Conquer Sorting -->
+    <section id="divide-conquer" style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">2. Divide & Conquer: Quick Sort vs Merge Sort</h2>
+      <p>
+        Comparison-based sorting has a proven mathematical lower bound of <code>Ω(n log n)</code>. The two industry standards divide inputs recursively:
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="badge badge-cyan" style="margin-bottom: 0.5rem;">Divide & Conquer</div>
+          <h3 style="font-size: 1.2rem; color: var(--cyan); margin-bottom: 0.6rem;">Merge Sort (Stable)</h3>
+          <p style="font-size: 0.9rem;">
+            Splits array in halves until sub-arrays have 1 element, then merges sorted sub-arrays in <code>O(n)</code> linear time.
+          </p>
+          <ul style="padding-left: 1.2rem; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7;">
+            <li><strong>Time:</strong> Guaranteed <code>O(n log n)</code> in best, average, and worst cases.</li>
+            <li><strong>Space:</strong> <code>O(n)</code> auxiliary memory needed for merging buffers.</li>
+            <li><strong>Stability:</strong> Yes (preserves original order of equal keys).</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="badge badge-purple" style="margin-bottom: 0.5rem;">In-Place Partitioning</div>
+          <h3 style="font-size: 1.2rem; color: var(--purple); margin-bottom: 0.6rem;">Quick Sort (Cache-Optimized)</h3>
+          <p style="font-size: 0.9rem;">
+            Picks a pivot, partitions array such that items smaller than pivot are left, larger are right, then recurses.
+          </p>
+          <ul style="padding-left: 1.2rem; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7;">
+            <li><strong>Time:</strong> Average <code>O(n log n)</code>, worst-case <code>O(n²)</code> (mitigated by randomized pivot).</li>
+            <li><strong>Space:</strong> <code>O(log n)</code> call stack space (in-place data swap).</li>
+            <li><strong>Cache Friendliness:</strong> Extremely fast due to contiguous cache line sequential traversal.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Graph Algorithms (BFS, DFS, Dijkstra) -->
+    <section id="graphs" style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">3. Graph Traversal & Shortest Path</h2>
+      <p>
+        Graphs model networks, roads, dependencies, and web pages. Traversing vertices and relaxing edges is central to computer science:
+      </p>
+
+      <div class="grid-3">
+        <div class="card">
+          <h4 style="font-size: 1.15rem; color: var(--cyan); margin-bottom: 0.5rem;">Breadth-First Search (BFS)</h4>
+          <p style="font-size: 0.88rem;">
+            Explores neighbors level-by-level using a <strong>Queue (FIFO)</strong>. Finds the shortest path in unweighted graphs in <code>O(V + E)</code> time.
+          </p>
+        </div>
+
+        <div class="card">
+          <h4 style="font-size: 1.15rem; color: var(--purple); margin-bottom: 0.5rem;">Depth-First Search (DFS)</h4>
+          <p style="font-size: 0.88rem;">
+            Explores as deep as possible along each branch before backtracking using a <strong>Stack / Recursion</strong>. Used for cycle detection and topological sorting.
+          </p>
+        </div>
+
+        <div class="card">
+          <h4 style="font-size: 1.15rem; color: var(--emerald); margin-bottom: 0.5rem;">Dijkstra's Algorithm</h4>
+          <p style="font-size: 0.88rem;">
+            Finds shortest paths from single source to all vertices on weighted graphs (with non-negative weights) using a <strong>Min-Priority Queue</strong> in <code>O((V + E) log V)</code>.
+          </p>
+        </div>
+      </div>
+
+      <div class="code-window" style="margin-top: 1.5rem;">
+        <div class="code-header">
+          <span class="code-title">dijkstra_shortest_path.py</span>
+          <button class="code-copy-btn"><span>📋 Copy</span></button>
+        </div>
+        <div class="code-body">
+          <pre><span class="tok-keyword">import</span> heapq
+
+<span class="tok-keyword">def</span> <span class="tok-func">dijkstra</span>(graph, start_node):
+    distances = {node: float(<span class="tok-string">'inf'</span>) <span class="tok-keyword">for</span> node <span class="tok-keyword">in</span> graph}
+    distances[start_node] = <span class="tok-num">0</span>
+    pq = [(<span class="tok-num">0</span>, start_node)]  <span class="tok-comment"># (distance, node)</span>
+
+    <span class="tok-keyword">while</span> pq:
+        current_dist, current_node = heapq.heappop(pq)
+
+        <span class="tok-keyword">if</span> current_dist > distances[current_node]:
+            <span class="tok-keyword">continue</span>
+
+        <span class="tok-keyword">for</span> neighbor, weight <span class="tok-keyword">in</span> graph[current_node].items():
+            new_dist = current_dist + weight
+            <span class="tok-keyword">if</span> new_dist < distances[neighbor]:
+                distances[neighbor] = new_dist
+                heapq.heappush(pq, (new_dist, neighbor))
+
+    <span class="tok-keyword">return</span> distances</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Dynamic Programming -->
+    <section id="dp" style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">4. Dynamic Programming (Memoization vs Tabulation)</h2>
+      <p>
+        DP optimizes problems with <strong>overlapping subproblems</strong> and <strong>optimal substructure</strong> by caching computed results rather than recomputing exponentially:
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h4 style="font-size: 1.15rem; color: var(--cyan); margin-bottom: 0.5rem;">Top-Down with Memoization</h4>
+          <p style="font-size: 0.9rem;">
+            Keep recursive structure, but store returned values in a hash map or cache array. Only computes subproblems that are actually requested on the recursion path.
+          </p>
+        </div>
+        <div class="card">
+          <h4 style="font-size: 1.15rem; color: var(--emerald); margin-bottom: 0.5rem;">Bottom-Up with Tabulation</h4>
+          <p style="font-size: 0.9rem;">
+            Iteratively fill a table from base cases up to target <code>n</code>. Eliminates call stack recursion overhead and often enables state-compression to <code>O(1)</code> space.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Quiz -->
+    <section id="quiz">
+      <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem; color: #fff;">Knowledge Check: Algorithms</h2>
+      <p style="margin-bottom: 1.5rem;">Demonstrate your mastery of algorithm lower bounds, graph traversals, and dynamic programming.</p>
+      <div class="quiz-widget" id="algorithms-quiz" data-quiz-category="algorithms"></div>
+    </section>
+
+  </main>
+
+  <!-- Global Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal">
+    <div class="search-modal-card">
+      <div class="search-input-wrap">
+        <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="search-input" placeholder="Search algorithms, data structures, systems, SQL..." autocomplete="off">
+        <span class="kbd-shortcut">ESC</span>
+      </div>
+      <ul class="search-results-list" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Press <kbd class="kbd-shortcut">ESC</kbd> to exit</span>
+        <span>CS Academy Knowledge Index</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 CS Academy Project. Open source educational platform under MIT License.</div>
+        <div class="status-indicator">
+          <span class="status-dot"></span>
+          <span>Sorting Simulator Running</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>

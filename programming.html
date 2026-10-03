@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programming & Memory Models | CS Academy</title>
+  <meta name="description" content="Explore Stack vs Heap memory, garbage collection, OOP vs Functional paradigms, and compiler AST pipelines.">
+  <link rel="stylesheet" href="icons.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="responsive.css">
+  <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body>
+
+  <!-- Background Particle Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container navbar-container navbar">
+      <a href="index.html" class="brand-link">
+        <img src="logo.png" alt="CS Academy Logo" class="brand-logo-img">
+        <div class="brand-text">CS <span>Academy</span></div>
+      </a>
+      <nav>
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item has-dropdown">
+            <a href="foundations.html" class="nav-link active">Core Curriculum ▾</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item"><a href="foundations.html">⚡ Foundations & Logic</a></li>
+              <li class="dropdown-item"><a href="data-structures.html">📦 Data Structures</a></li>
+              <li class="dropdown-item"><a href="algorithms.html">⚙️ Algorithms & Visualizer</a></li>
+              <li class="dropdown-item"><a href="programming.html">💻 Programming & Memory</a></li>
+              <li class="dropdown-item"><a href="operating-systems.html">🖥️ Operating Systems</a></li>
+              <li class="dropdown-item"><a href="networking.html">🌐 Computer Networking</a></li>
+              <li class="dropdown-item"><a href="databases.html">🗄️ Databases & SQL</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="specializations.html" class="nav-link">Specializations</a></li>
+          <li class="nav-item"><a href="resources.html" class="nav-link">Resources</a></li>
+          <li class="nav-item"><a href="progress.html" class="nav-link">Dashboard</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <!-- Language Switcher Button -->
+        <button class="lang-switcher-btn" id="lang-toggle" title="Switch Language / ប្តូរភាសា">
+          <span>🇰🇭 ខ្មែរ / EN</span>
+        </button>
+        <button class="search-trigger-btn" id="search-trigger">
+          <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span>Search...</span>
+          <span class="kbd-shortcut">Ctrl K</span>
+        </button>
+        <a href="progress.html" class="progress-pill" id="header-progress-pill">Lvl 1 • 150 XP</a>
+        <button class="icon-btn" id="sfx-toggle" title="Toggle Cyber Sound Effects">🔊</button>
+        <button class="icon-btn" id="theme-toggle" aria-label="Toggle Theme">☀️</button>
+        <button class="mobile-toggle" id="mobile-toggle">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <div>
+        <div class="page-meta-tags" style="margin-bottom: 0.75rem;">
+          <span class="badge badge-amber">Module 04</span>
+          <span class="badge badge-cyan">Architecture & Paradigms</span>
+          <span class="badge badge-purple">Estimated 55 min</span>
+        </div>
+        <h1 class="page-title">Programming Models & Memory Architecture</h1>
+        <p class="page-desc">
+          How code transforms into physical silicon execution. Dive into Stack vs. Heap allocation, pointers, Garbage Collection vs Rust Borrowing, and compiler Abstract Syntax Trees.
+        </p>
+      </div>
+      <div class="lesson-action-strip">
+        <button class="btn btn-outline-cyan btn-sm" id="mark-complete-btn" data-topic-id="programming">
+          <span>Mark as Complete (+100 XP)</span>
+        </button>
+        <button class="btn btn-secondary btn-sm" id="bookmark-btn" data-topic-id="programming">
+          <span>☆ Bookmark</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="container" style="padding-bottom: 5rem;">
+
+    <!-- Section 1: Memory Architecture -->
+    <section id="memory" style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">1. Memory Topology: The Call Stack vs. The Heap</h2>
+      <p>
+        Every running operating system process is allocated a virtual address space divided into segments: Text/Code, Data/BSS, Stack, and Heap.
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="badge badge-cyan" style="margin-bottom: 0.5rem;">Deterministic LIFO</div>
+          <h3 style="font-size: 1.25rem; color: var(--cyan); margin-bottom: 0.5rem;">The Call Stack</h3>
+          <p style="font-size: 0.9rem;">
+            Stores function call frames, local variables, parameters, and return addresses.
+          </p>
+          <ul style="padding-left: 1.2rem; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7;">
+            <li><strong>Speed:</strong> CPU register pointer shift (<code>RSP/ESP</code>); instant allocation and deallocation.</li>
+            <li><strong>Lifetime:</strong> Automatically cleaned up when the function returns.</li>
+            <li><strong>Limitations:</strong> Fixed size (typically 1MB - 8MB). Infinite recursion causes a <code>StackOverflowError</code>.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="badge badge-purple" style="margin-bottom: 0.5rem;">Dynamic Lifetimes</div>
+          <h3 style="font-size: 1.25rem; color: var(--purple); margin-bottom: 0.5rem;">The Heap</h3>
+          <p style="font-size: 0.9rem;">
+            Stores objects whose size is unknown at compile time or whose lifetime must outlive the caller scope.
+          </p>
+          <ul style="padding-left: 1.2rem; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7;">
+            <li><strong>Management:</strong> Explicit (C <code>free</code>), Garbage Collected (Go/Java), or RAII/Ownership (Rust/C++).</li>
+            <li><strong>Trade-offs:</strong> Slower allocation (allocator must find contiguous free chunk), prone to memory fragmentation.</li>
+            <li><strong>Risks:</strong> Memory leaks, dangling pointers, use-after-free vulnerabilities.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Multi-Language Comparison (Interactive Tabs) -->
+    <section id="languages" style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">2. Multi-Language Syntax & Paradigm Comparison</h2>
+      <p>
+        Compare how different languages handle memory allocation, type checking, and functional paradigms. Click the tabs below to switch language implementations:
+      </p>
+
+      <div class="tabs-container">
+        <div class="tabs-nav">
+          <button class="tab-btn active">Python</button>
+          <button class="tab-btn">C++ (Modern RAII)</button>
+          <button class="tab-btn">Rust (Borrow Checker)</button>
+          <button class="tab-btn">JavaScript (ES6)</button>
+        </div>
+
+        <!-- Python Tab -->
+        <div class="tab-pane active">
+          <div class="code-window">
+            <div class="code-header">
+              <span class="code-title">python_memory.py</span>
+              <button class="code-copy-btn"><span>📋 Copy</span></button>
+            </div>
+            <div class="code-body">
+              <pre><span class="tok-comment"># Dynamic typing, reference counting & generational garbage collection</span>
+<span class="tok-keyword">class</span> <span class="tok-func">BufferNode</span>:
+    <span class="tok-keyword">def</span> <span class="tok-func">__init__</span>(self, value: int):
+        self.value = value
+        self.next = None
+
+<span class="tok-keyword">def</span> <span class="tok-func">process_stream</span>(items: list[int]) -> list[int]:
+    <span class="tok-comment"># List comprehension: Functional declarative style</span>
+    <span class="tok-keyword">return</span> [x * <span class="tok-num">2</span> <span class="tok-keyword">for</span> x <span class="tok-keyword">in</span> items <span class="tok-keyword">if</span> x % <span class="tok-num">2</span> == <span class="tok-num">0</span>]</pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- C++ Tab -->
+        <div class="tab-pane">
+          <div class="code-window">
+            <div class="code-header">
+              <span class="code-title">cpp_raii.cpp</span>
+              <button class="code-copy-btn"><span>📋 Copy</span></button>
+            </div>
+            <div class="code-body">
+              <pre><span class="tok-comment">// Static typing, deterministic destruction via RAII smart pointers</span>
+<span class="tok-keyword">#include</span> <span class="tok-string">&lt;memory&gt;</span>
+<span class="tok-keyword">#include</span> <span class="tok-string">&lt;vector&gt;</span>
+
+<span class="tok-keyword">struct</span> BufferNode {
+    <span class="tok-type">int</span> value;
+    std::unique_ptr&lt;BufferNode&gt; next; <span class="tok-comment">// Zero overhead automatic cleanup</span>
+};
+
+std::vector&lt;<span class="tok-type">int</span>&gt; process_stream(<span class="tok-keyword">const</span> std::vector&lt;<span class="tok-type">int</span>&gt;&amp; items) {
+    std::vector&lt;<span class="tok-type">int</span>&gt; result;
+    <span class="tok-keyword">for</span> (<span class="tok-type">int</span> x : items) {
+        <span class="tok-keyword">if</span> (x % <span class="tok-num">2</span> == <span class="tok-num">0</span>) result.push_back(x * <span class="tok-num">2</span>);
+    }
+    <span class="tok-keyword">return</span> result;
+}</pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rust Tab -->
+        <div class="tab-pane">
+          <div class="code-window">
+            <div class="code-header">
+              <span class="code-title">rust_ownership.rs</span>
+              <button class="code-copy-btn"><span>📋 Copy</span></button>
+            </div>
+            <div class="code-body">
+              <pre><span class="tok-comment">// Compile-time memory safety without a garbage collector</span>
+<span class="tok-keyword">struct</span> BufferNode {
+    value: <span class="tok-type">i32</span>,
+    next: Option&lt;Box&lt;BufferNode&gt;&gt;,
+}
+
+<span class="tok-keyword">pub fn</span> <span class="tok-func">process_stream</span>(items: &amp;[<span class="tok-type">i32</span>]) -&gt; Vec&lt;<span class="tok-type">i32</span>&gt; {
+    <span class="tok-comment">// Zero-cost iterator abstraction</span>
+    items.iter()
+        .filter(|&amp;&amp;x| x % <span class="tok-num">2</span> == <span class="tok-num">0</span>)
+        .map(|&amp;x| x * <span class="tok-num">2</span>)
+        .collect()
+}</pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- JS Tab -->
+        <div class="tab-pane">
+          <div class="code-window">
+            <div class="code-header">
+              <span class="code-title">javascript_v8.js</span>
+              <button class="code-copy-btn"><span>📋 Copy</span></button>
+            </div>
+            <div class="code-body">
+              <pre><span class="tok-comment">// Single-threaded event loop, JIT compiled via V8 Engine</span>
+<span class="tok-keyword">class</span> BufferNode {
+  constructor(value) {
+    <span class="tok-keyword">this</span>.value = value;
+    <span class="tok-keyword">this</span>.next = <span class="tok-keyword">null</span>;
+  }
+}
+
+<span class="tok-keyword">const</span> processStream = (items) =&gt; 
+  items.filter(x =&gt; x % <span class="tok-num">2</span> === <span class="tok-num">0</span>).map(x =&gt; x * <span class="tok-num">2</span>);</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Compiler Pipeline -->
+    <section id="compilers" style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">3. The Compiler Pipeline & ASTs</h2>
+      <p>
+        How high-level human-readable code becomes executable machine instructions:
+      </p>
+
+      <div class="grid-4">
+        <div class="card">
+          <span class="badge badge-cyan" style="margin-bottom: 0.5rem;">Stage 1</span>
+          <h4 style="font-size: 1.1rem; color: #fff;">Lexical Analysis</h4>
+          <p style="font-size: 0.85rem;">Converts raw source characters into a stream of categorized <strong>Tokens</strong> (Keywords, Identifiers, Literals).</p>
+        </div>
+        <div class="card">
+          <span class="badge badge-purple" style="margin-bottom: 0.5rem;">Stage 2</span>
+          <h4 style="font-size: 1.1rem; color: #fff;">Parsing & AST</h4>
+          <p style="font-size: 0.85rem;">Checks grammar according to language syntax rules and builds an <strong>Abstract Syntax Tree (AST)</strong>.</p>
+        </div>
+        <div class="card">
+          <span class="badge badge-emerald" style="margin-bottom: 0.5rem;">Stage 3</span>
+          <h4 style="font-size: 1.1rem; color: #fff;">Semantic & IR</h4>
+          <p style="font-size: 0.85rem;">Type checking, scope resolution, and translation into architecture-independent <strong>Intermediate Representation (LLVM IR)</strong>.</p>
+        </div>
+        <div class="card">
+          <span class="badge badge-amber" style="margin-bottom: 0.5rem;">Stage 4</span>
+          <h4 style="font-size: 1.1rem; color: #fff;">Optimization & Codegen</h4>
+          <p style="font-size: 0.85rem;">Dead code elimination, loop unrolling, register allocation, and assembly emission for target CPU (x86_64 / ARM64).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Quiz -->
+    <section id="quiz">
+      <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem; color: #fff;">Knowledge Check: Programming Models</h2>
+      <p style="margin-bottom: 1.5rem;">Verify your knowledge of stack frames, memory allocation, and software architecture principles.</p>
+      <div class="quiz-widget" id="programming-quiz" data-quiz-category="programming"></div>
+    </section>
+
+  </main>
+
+  <!-- Global Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal">
+    <div class="search-modal-card">
+      <div class="search-input-wrap">
+        <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="search-input" placeholder="Search algorithms, data structures, systems, SQL..." autocomplete="off">
+        <span class="kbd-shortcut">ESC</span>
+      </div>
+      <ul class="search-results-list" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Press <kbd class="kbd-shortcut">ESC</kbd> to exit</span>
+        <span>CS Academy Knowledge Index</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 CS Academy Project. Open source educational platform under MIT License.</div>
+        <div class="status-indicator">
+          <span class="status-dot"></span>
+          <span>Syntax Engine Active</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>

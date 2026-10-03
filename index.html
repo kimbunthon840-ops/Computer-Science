@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS Academy | Master Computer Science from Theory to Systems</title>
+  <meta name="description" content="A comprehensive, interactive Computer Science curriculum covering Foundations, Data Structures, Algorithms, Systems, Networks, Databases, and Specializations.">
+  <link rel="stylesheet" href="icons.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="responsive.css">
+  <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body>
+
+  <!-- Background Particle Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container navbar-container navbar">
+      <a href="index.html" class="brand-link" id="brand-logo">
+        <img src="logo.png" alt="CS Academy Logo" class="brand-logo-img">
+        <div class="brand-text">CS <span>Academy</span></div>
+      </a>
+
+      <!-- Desktop & Mobile Navigation Menu -->
+      <nav>
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link active" data-i18n="nav_home">Home</a></li>
+          <li class="nav-item has-dropdown">
+            <a href="foundations.html" class="nav-link" data-i18n="nav_curriculum">Core Curriculum ▾</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item"><a href="foundations.html" data-i18n="nav_foundations">⚡ Foundations & Logic</a></li>
+              <li class="dropdown-item"><a href="data-structures.html" data-i18n="nav_ds">📦 Data Structures</a></li>
+              <li class="dropdown-item"><a href="algorithms.html" data-i18n="nav_algo">⚙️ Algorithms & Visualizer</a></li>
+              <li class="dropdown-item"><a href="programming.html" data-i18n="nav_prog">💻 Programming & Memory</a></li>
+              <li class="dropdown-item"><a href="operating-systems.html" data-i18n="nav_os">🖥️ Operating Systems</a></li>
+              <li class="dropdown-item"><a href="networking.html" data-i18n="nav_net">🌐 Computer Networking</a></li>
+              <li class="dropdown-item"><a href="databases.html" data-i18n="nav_db">🗄️ Databases & SQL</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="specializations.html" class="nav-link" data-i18n="nav_specs">Specializations</a></li>
+          <li class="nav-item"><a href="resources.html" class="nav-link" data-i18n="nav_res">Resources</a></li>
+          <li class="nav-item"><a href="progress.html" class="nav-link" data-i18n="nav_dash">Dashboard</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link" data-i18n="nav_about">About</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link" data-i18n="nav_contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Action Items -->
+      <div class="nav-actions">
+        <!-- Language Switcher Button (Khmer / English) -->
+        <button class="lang-switcher-btn" id="lang-toggle" title="Switch Language / ប្តូរភាសា">
+          <span>🇰🇭 ខ្មែរ / EN</span>
+        </button>
+
+        <button class="search-trigger-btn" id="search-trigger" title="Search Curriculum (Ctrl+K)">
+          <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span data-i18n="search_btn">Search...</span>
+          <span class="kbd-shortcut">Ctrl K</span>
+        </button>
+
+        <a href="progress.html" class="progress-pill" id="header-progress-pill" title="Your XP & Level">
+          <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <span>Lvl 1 • 150 XP</span>
+        </a>
+
+        <button class="icon-btn" id="sfx-toggle" title="Toggle Cyber Sound Effects">🔊</button>
+
+        <button class="icon-btn" id="theme-toggle" title="Toggle Theme" aria-label="Toggle Light/Dark Theme">
+          <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Navigation Menu">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Banner Section -->
+  <main>
+    <section class="hero-banner-section">
+      <div class="container">
+        <div class="hero-banner-card">
+          <img src="banner.jpg" alt="Computer Science Hologram" class="hero-banner-bg">
+
+          <!-- Docked Top Running Text Marquee (At the top of Hero Banner Card) -->
+          <div class="hero-card-top-ticker" id="hero-card-top-ticker">
+            <div class="hero-top-ticker-badge">
+              <span class="top-ticker-pulse-violet"></span>
+              <span class="hero-top-ticker-label" data-i18n="hero_top_ticker_badge">🔥 CS FRONTIER</span>
+            </div>
+            <div class="hero-top-ticker-viewport">
+              <div class="hero-top-ticker-track" id="hero-top-ticker-track">
+                <!-- Set 1 -->
+                <div class="hero-top-ticker-item"><span class="ticker-icon">🧠</span> <strong class="top-ticker-title">P vs NP Problem:</strong> The $1,000,000 Millennium Prize Question in Theoretical Computation</div>
+                <div class="hero-top-ticker-sep">✦</div>
+                <div class="hero-top-ticker-item"><span class="ticker-icon">⚡</span> <strong class="top-ticker-title">Quantum Computing:</strong> Qubits, Superposition, Entanglement &amp; Shor's Factoring Polynomial</div>
+                <div class="hero-top-ticker-sep">✦</div>
+                <div class="hero-top-ticker-item"><span class="ticker-icon">💡</span> <strong class="top-ticker-title">Alan Turing (1936):</strong> Universal Turing Machine &amp; The Undecidability of the Halting Problem</div>
+                <div class="hero-top-ticker-sep">✦</div>
+                <div class="hero-top-ticker-item"><span class="ticker-icon">🌐</span> <strong class="top-ticker-title">Shannon's Law:</strong> Information Entropy &amp; The Theoretical Maximum Capacity of Communication Channels</div>
+                <div class="hero-top-ticker-sep">✦</div>
+                <div class="hero-top-ticker-item"><span class="ticker-icon">💻</span> <strong class="top-ticker-title">Von Neumann Model:</strong> Stored-Program Architecture, CPU Instruction Cycle &amp; System Bus</div>
+                <div class="hero-top-ticker-sep">✦</div>
+                <div class="hero-top-ticker-item"><span class="ticker-icon">🛡️</span> <strong class="top-ticker-title">CAP Theorem:</strong> Consistency, Availability, and Partition Tolerance Trade-offs in Distributed Clusters</div>
+                <div class="hero-top-ticker-sep">✦</div>
+                <div class="hero-top-ticker-item"><span class="ticker-icon">🤖</span> <strong class="top-ticker-title">Neural Transformers:</strong> Self-Attention Mechanism &amp; Scaling Laws Driving Modern Frontier AI</div>
+                <div class="hero-top-ticker-sep">✦</div>
+                <div class="hero-top-ticker-item"><span class="ticker-icon">📜</span> <strong class="top-ticker-title">Dijkstra's Maxim:</strong> "Computer science is no more about computers than astronomy is about telescopes."</div>
+                <div class="hero-top-ticker-sep">✦</div>
+
+                <!-- Set 2 (Continuous Loop Duplicate) -->
+                <div class="hero-top-ticker-item"><span class="ticker-icon">🧠</span> <strong class="top-ticker-title">P vs NP Problem:</strong> The $1,000,000 Millennium Prize Question in Theoretical Computation</div>
+                <div class="hero-top-ticker-sep">✦</div>
+                <div class="hero-top-ticker-item"><span class="ticker-icon">⚡</span> <strong class="top-ticker-title">Quantum Computing:</strong> Qubits, Superposition, Entanglement &amp; Shor's Factoring Polynomial</div>
+                <div class="hero-top-ticker-sep">✦</div>
+                <div class="hero-top-ticker-item"><span class="ticker-icon">💡</span> <strong class="top-ticker-title">Alan Turing (1936):</strong> Universal Turing Machine &amp; The Undecidability of the Halting Problem</div>
+                <div class="hero-top-ticker-sep">✦</div>
+                <div class="hero-top-ticker-item"><span class="ticker-icon">🌐</span> <strong class="top-ticker-title">Shannon's Law:</strong> Information Entropy &amp; The Theoretical Maximum Capacity of Communication Channels</div>
+                <div class="hero-top-ticker-sep">✦</div>
+                <div class="hero-top-ticker-item"><span class="ticker-icon">💻</span> <strong class="top-ticker-title">Von Neumann Model:</strong> Stored-Program Architecture, CPU Instruction Cycle &amp; System Bus</div>
+                <div class="hero-top-ticker-sep">✦</div>
+                <div class="hero-top-ticker-item"><span class="ticker-icon">🛡️</span> <strong class="top-ticker-title">CAP Theorem:</strong> Consistency, Availability, and Partition Tolerance Trade-offs in Distributed Clusters</div>
+                <div class="hero-top-ticker-sep">✦</div>
+                <div class="hero-top-ticker-item"><span class="ticker-icon">🤖</span> <strong class="top-ticker-title">Neural Transformers:</strong> Self-Attention Mechanism &amp; Scaling Laws Driving Modern Frontier AI</div>
+                <div class="hero-top-ticker-sep">✦</div>
+                <div class="hero-top-ticker-item"><span class="ticker-icon">📜</span> <strong class="top-ticker-title">Dijkstra's Maxim:</strong> "Computer science is no more about computers than astronomy is about telescopes."</div>
+                <div class="hero-top-ticker-sep">✦</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-banner-overlay">
+            <div class="badge badge-cyan" style="margin-bottom: 1.25rem;">
+              <span data-i18n="hero_badge">🚀 Open-Access University-Grade CS Curriculum</span>
+            </div>
+            <h1 class="hero-title">
+              <span data-i18n="hero_title">Empower Your Mind with</span><br>
+              <span class="text-gradient" id="hero-typewriter">Computer Science</span><span class="typewriter-cursor">|</span>
+            </h1>
+            <p class="hero-subtitle" data-i18n="hero_sub">
+              From discrete mathematics and low-level memory architectures to distributed consensus and neural networks. Learn with live visualizers, real code environments, and interactive knowledge checks.
+            </p>
+            <div class="hero-actions">
+              <a href="foundations.html" class="btn btn-primary btn-lg" id="hero-start-btn" data-i18n="hero_btn_start">Start Learning Track →</a>
+              <a href="algorithms.html#visualizer" class="btn btn-secondary btn-lg" id="hero-demo-btn">
+                <span data-i18n="hero_btn_demo">⚡ Try Algorithm Visualizer</span>
+              </a>
+            </div>
+
+            <div class="hero-stats-row">
+              <div class="stat-item">
+                <h3>8+</h3>
+                <p data-i18n="stat_tracks">Core Disciplines</p>
+              </div>
+              <div class="stat-item">
+                <h3>60+</h3>
+                <p data-i18n="stat_topics">Interactive Topics</p>
+              </div>
+              <div class="stat-item">
+                <h3>100%</h3>
+                <p data-i18n="stat_free">Free & Open Source</p>
+              </div>
+              <div class="stat-item">
+                <h3>XP</h3>
+                <p data-i18n="stat_xp">Gamified Progress</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Docked Infinite CS Cyber Ticker (Running Text Directly on Hero Card) -->
+          <div class="hero-card-ticker-dock" id="hero-card-ticker">
+            <div class="hero-card-ticker-badge">
+              <span class="ticker-pulse-cyan"></span>
+              <span class="hero-card-ticker-label" data-i18n="ticker_live_badge">⚡ LIVE CS STREAM</span>
+            </div>
+            <div class="hero-card-ticker-viewport">
+              <div class="hero-card-ticker-track" id="hero-card-ticker-track">
+                <!-- Set 1 -->
+                <div class="hero-ticker-item cs-ticker-item"><span class="ticker-icon">⚙️</span> <strong class="ticker-title">Algorithms:</strong> O(1) Constant ➔ O(log n) Binary Search ➔ O(n log n) Merge Sort ➔ Dynamic Programming</div>
+                <div class="hero-ticker-sep cs-ticker-separator">✦</div>
+                <div class="hero-ticker-item cs-ticker-item"><span class="ticker-icon">📦</span> <strong class="ticker-title">Data Structures:</strong> Dynamic Arrays • Stacks (LIFO) • Queues (FIFO) • Binary Search Trees • Hash Tables</div>
+                <div class="hero-ticker-sep cs-ticker-separator">✦</div>
+                <div class="hero-ticker-item cs-ticker-item"><span class="ticker-icon">💻</span> <strong class="ticker-title">Memory &amp; Systems:</strong> Stack vs Heap • Pointer Arithmetic • Virtual Memory Paging • Garbage Collection</div>
+                <div class="hero-ticker-sep cs-ticker-separator">✦</div>
+                <div class="hero-ticker-item cs-ticker-item"><span class="ticker-icon">🖥️</span> <strong class="ticker-title">Operating Systems:</strong> CPU Round Robin • Multithreading • Mutex Locks • Deadlock Prevention</div>
+                <div class="hero-ticker-sep cs-ticker-separator">✦</div>
+                <div class="hero-ticker-item cs-ticker-item"><span class="ticker-icon">🌐</span> <strong class="ticker-title">Networking:</strong> 7-Layer OSI • TCP 3-Way Handshake • DNS Hierarchy • HTTP/3 QUIC • CIDR Subnetting</div>
+                <div class="hero-ticker-sep cs-ticker-separator">✦</div>
+                <div class="hero-ticker-item cs-ticker-item"><span class="ticker-icon">🗄️</span> <strong class="ticker-title">Databases:</strong> ACID Guarantees • Relational Normalization • B+ Tree Indexing • Live SQL Engine</div>
+                <div class="hero-ticker-sep cs-ticker-separator">✦</div>
+                <div class="hero-ticker-item cs-ticker-item"><span class="ticker-icon">🧠</span> <strong class="ticker-title">AI &amp; Neural Nets:</strong> Deep Learning • Transformer Architecture • Self-Attention • Backpropagation • LLMs</div>
+                <div class="hero-ticker-sep cs-ticker-separator">✦</div>
+                <div class="hero-ticker-item cs-ticker-item"><span class="ticker-icon">🔐</span> <strong class="ticker-title">Cybersecurity:</strong> AES-256 Encryption • RSA Public Key • Zero Trust Architecture • SHA-256 Hashing</div>
+                <div class="hero-ticker-sep cs-ticker-separator">✦</div>
+
+                <!-- Set 2 (Continuous Loop Duplicate) -->
+                <div class="hero-ticker-item cs-ticker-item"><span class="ticker-icon">⚙️</span> <strong class="ticker-title">Algorithms:</strong> O(1) Constant ➔ O(log n) Binary Search ➔ O(n log n) Merge Sort ➔ Dynamic Programming</div>
+                <div class="hero-ticker-sep cs-ticker-separator">✦</div>
+                <div class="hero-ticker-item cs-ticker-item"><span class="ticker-icon">📦</span> <strong class="ticker-title">Data Structures:</strong> Dynamic Arrays • Stacks (LIFO) • Queues (FIFO) • Binary Search Trees • Hash Tables</div>
+                <div class="hero-ticker-sep cs-ticker-separator">✦</div>
+                <div class="hero-ticker-item cs-ticker-item"><span class="ticker-icon">💻</span> <strong class="ticker-title">Memory &amp; Systems:</strong> Stack vs Heap • Pointer Arithmetic • Virtual Memory Paging • Garbage Collection</div>
+                <div class="hero-ticker-sep cs-ticker-separator">✦</div>
+                <div class="hero-ticker-item cs-ticker-item"><span class="ticker-icon">🖥️</span> <strong class="ticker-title">Operating Systems:</strong> CPU Round Robin • Multithreading • Mutex Locks • Deadlock Prevention</div>
+                <div class="hero-ticker-sep cs-ticker-separator">✦</div>
+                <div class="hero-ticker-item cs-ticker-item"><span class="ticker-icon">🌐</span> <strong class="ticker-title">Networking:</strong> 7-Layer OSI • TCP 3-Way Handshake • DNS Hierarchy • HTTP/3 QUIC • CIDR Subnetting</div>
+                <div class="hero-ticker-sep cs-ticker-separator">✦</div>
+                <div class="hero-ticker-item cs-ticker-item"><span class="ticker-icon">🗄️</span> <strong class="ticker-title">Databases:</strong> ACID Guarantees • Relational Normalization • B+ Tree Indexing • Live SQL Engine</div>
+                <div class="hero-ticker-sep cs-ticker-separator">✦</div>
+                <div class="hero-ticker-item cs-ticker-item"><span class="ticker-icon">🧠</span> <strong class="ticker-title">AI &amp; Neural Nets:</strong> Deep Learning • Transformer Architecture • Self-Attention • Backpropagation • LLMs</div>
+                <div class="hero-ticker-sep cs-ticker-separator">✦</div>
+                <div class="hero-ticker-item cs-ticker-item"><span class="ticker-icon">🔐</span> <strong class="ticker-title">Cybersecurity:</strong> AES-256 Encryption • RSA Public Key • Zero Trust Architecture • SHA-256 Hashing</div>
+                <div class="hero-ticker-sep cs-ticker-separator">✦</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive CS Cyber Lab (WOW Factor Playground) -->
+    <section class="container" id="cyber-lab">
+      <div class="cyber-lab-box tabs-container">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 2rem;">
+          <div>
+            <div class="badge badge-cyan" style="margin-bottom: 0.6rem;">
+              <span>⚡ Interactive Computer Science Lab</span>
+            </div>
+            <h2 style="font-size: 2.1rem; color: #fff;">Live Computing Sandbox</h2>
+            <p style="font-size: 0.95rem; margin-bottom: 0;">Experience algorithmic scaling, binary matrix streams, and computer science wisdom live.</p>
+          </div>
+          <div class="tabs-nav" style="margin-bottom: 0; border-bottom: none;">
+            <button class="tab-btn active">⚡ Big-O Speed Race</button>
+            <button class="tab-btn">🔡 Live Binary Streamer</button>
+            <button class="tab-btn">💻 Live Code Sandbox</button>
+            <button class="tab-btn">💡 CS Wisdom &amp; XP</button>
+            <button class="btn btn-secondary btn-sm" id="matrix-rain-trigger" style="border-color: #22c55e; color: #22c55e; margin-left: 0.5rem;">
+              <span>🌧️</span> Matrix Rain Mode
+            </button>
+          </div>
+        </div>
+
+        <!-- Tab 1: Big-O Race -->
+        <div class="tab-pane active">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+            <p style="margin-bottom: 0; font-size: 0.92rem; color: var(--text-secondary);">
+              Simulate asymptotic algorithmic scaling across input sizes from 100 to 10,000 items:
+            </p>
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <select id="race-size-select" style="padding: 0.55rem 0.95rem; background: var(--bg-input); border: 1px solid var(--border-light); border-radius: var(--radius-sm); color: #fff; font-family: var(--font-heading); font-size: 0.9rem;">
+                <option value="100">n = 100 items</option>
+                <option value="1000" selected>n = 1,000 items</option>
+                <option value="10000">n = 10,000 items</option>
+              </select>
+              <button class="btn btn-primary btn-sm" id="race-start-btn">▶ Launch Complexity Race</button>
+            </div>
+          </div>
+
+          <div class="cyber-race-track">
+            <div class="race-item">
+              <div class="race-meta">
+                <span style="color: var(--emerald); font-weight: 700;">O(1) — Constant Time (Hash Map / Array Index)</span>
+                <span id="race-time-o1" style="color: var(--text-muted);">Ready</span>
+              </div>
+              <div class="race-bar-bg"><div class="race-bar-fill c-emerald" id="race-bar-o1"></div></div>
+            </div>
+
+            <div class="race-item">
+              <div class="race-meta">
+                <span style="color: var(--cyan); font-weight: 700;">O(log n) — Logarithmic (Binary Search / Balanced BST)</span>
+                <span id="race-time-ologn" style="color: var(--text-muted);">Ready</span>
+              </div>
+              <div class="race-bar-bg"><div class="race-bar-fill c-cyan" id="race-bar-ologn"></div></div>
+            </div>
+
+            <div class="race-item">
+              <div class="race-meta">
+                <span style="color: var(--purple); font-weight: 700;">O(n) — Linear (Single Array Traversal)</span>
+                <span id="race-time-on" style="color: var(--text-muted);">Ready</span>
+              </div>
+              <div class="race-bar-bg"><div class="race-bar-fill c-purple" id="race-bar-on"></div></div>
+            </div>
+
+            <div class="race-item">
+              <div class="race-meta">
+                <span style="color: var(--amber); font-weight: 700;">O(n log n) — Linearithmic (Merge Sort / Quick Sort)</span>
+                <span id="race-time-onlogn" style="color: var(--text-muted);">Ready</span>
+              </div>
+              <div class="race-bar-bg"><div class="race-bar-fill c-amber" id="race-bar-onlogn"></div></div>
+            </div>
+
+            <div class="race-item">
+              <div class="race-meta">
+                <span style="color: var(--rose); font-weight: 700;">O(n²) — Quadratic (Nested Loops / Bubble Sort)</span>
+                <span id="race-time-on2" style="color: var(--text-muted);">Ready</span>
+              </div>
+              <div class="race-bar-bg"><div class="race-bar-fill c-rose" id="race-bar-on2"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Binary Streamer -->
+        <div class="tab-pane">
+          <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; font-size: 0.92rem; font-weight: 600; margin-bottom: 0.5rem; color: #fff;">Type any text or code to witness live bit streams &amp; hex representation:</label>
+            <input type="text" id="binary-stream-input" placeholder="e.g. Computer Science, សួស្តី, Algorithm..." style="width: 100%; padding: 0.85rem 1.25rem; background: var(--bg-input); border: 1px solid var(--border-light); border-radius: var(--radius-sm); color: var(--cyan); font-family: var(--font-mono); font-size: 1.05rem;">
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+            <div>
+              <span style="font-size: 0.82rem; color: var(--text-muted); text-transform: uppercase;">Binary Bit Stream (8-bit ASCII / UTF-8):</span>
+              <div class="binary-matrix-stream" id="binary-stream-output">01000011 01010011 00100000 01000001 01100011 01100001 01100100 01100101 01101101 01111001</div>
+            </div>
+            <div class="grid-2" style="gap: 1.25rem;">
+              <div style="background: rgba(0,0,0,0.35); padding: 1.25rem; border-radius: var(--radius-sm); border: 1px solid var(--border-glass);">
+                <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Hexadecimal Representation:</span>
+                <div id="hex-stream-output" style="font-family: var(--font-mono); color: var(--purple); font-size: 0.95rem; margin-top: 0.35rem; word-break: break-all;">0x43 0x53 0x20 0x41 0x63 0x61 0x64 0x65 0x6D 0x79</div>
+              </div>
+              <div style="background: rgba(0,0,0,0.35); padding: 1.25rem; border-radius: var(--radius-sm); border: 1px solid var(--border-glass);">
+                <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">XOR Cipher Output (Key 0xAA):</span>
+                <div id="cipher-stream-output" style="font-family: var(--font-mono); color: var(--amber); font-size: 0.95rem; margin-top: 0.35rem; word-break: break-all;">E9 F9 8A EB C9 CB CE CF C7 D3</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Live Code Sandbox & Runner -->
+        <div class="tab-pane">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+            <p style="margin-bottom: 0; font-size: 0.92rem; color: var(--text-secondary);">
+              Run real-time JavaScript algorithms in-browser with live execution benchmarks &amp; output console:
+            </p>
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <select id="sandbox-preset-select" style="padding: 0.55rem 0.95rem; background: var(--bg-input); border: 1px solid var(--border-light); border-radius: var(--radius-sm); color: #fff; font-family: var(--font-heading); font-size: 0.9rem;">
+                <option value="fibonacci">🌟 Fibonacci Sequence (DP)</option>
+                <option value="binary_search">🔍 Binary Search Algorithm</option>
+                <option value="palindrome">🔄 Palindrome &amp; String Reverse</option>
+                <option value="bubble_sort">🔢 Bubble Sort Trace</option>
+                <option value="prime_sieve">🧮 Sieve of Eratosthenes (Primes)</option>
+              </select>
+              <button class="btn btn-primary btn-sm" id="sandbox-run-btn">▶ Run Code</button>
+              <button class="btn btn-secondary btn-sm" id="sandbox-reset-btn">🔄 Reset</button>
+            </div>
+          </div>
+
+          <div class="sandbox-editor-wrapper">
+            <div class="sandbox-code-area">
+              <div class="sandbox-toolbar">
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <span class="code-dot dot-red"></span>
+                  <span class="code-dot dot-yellow"></span>
+                  <span class="code-dot dot-green"></span>
+                  <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-left: 8px;">algorithm_sandbox.js</span>
+                </div>
+                <span style="font-size: 0.75rem; color: var(--cyan); font-family: var(--font-mono);">ES6 / V8 In-Browser Engine</span>
+              </div>
+              <textarea id="sandbox-editor" class="sandbox-textarea" spellcheck="false"></textarea>
+            </div>
+
+            <div class="sandbox-console">
+              <div class="sandbox-console-header">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e; display: inline-block;"></span>
+                  <span>bash - CS Sandbox Output Terminal</span>
+                </div>
+                <span id="sandbox-metrics" style="font-size: 0.75rem; color: var(--text-muted);">Ready to execute</span>
+              </div>
+              <div id="sandbox-output" class="sandbox-console-body">
+                <div class="console-line dim"># CS Academy In-Browser Runtime v2.4</div>
+                <div class="console-line dim"># Click '▶ Run Code' above or press Ctrl+Enter to execute.</div>
+                <div class="console-line success">✓ Sandbox initialized. Ready for execution.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 4: CS Wisdom & XP -->
+        <div class="tab-pane">
+          <div style="text-align: center; padding: 2.5rem 1.5rem;">
+            <div style="font-size: 3rem; margin-bottom: 0.85rem;">💡</div>
+            <div id="wisdom-quote-text" style="font-size: 1.35rem; font-style: italic; color: #fff; max-width: 680px; margin: 0 auto 0.75rem; line-height: 1.65;">
+              "Programs must be written for people to read, and only incidentally for machines to execute."
+            </div>
+            <div id="wisdom-author-text" style="font-size: 0.95rem; color: var(--cyan); margin-bottom: 2rem; font-weight: 600;">
+              — Harold Abelson (Structure and Interpretation of Computer Programs)
+            </div>
+            <button class="btn btn-primary" id="wisdom-spin-btn">
+              <span>🎲 Spin for New Quote &amp; +25 XP</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Quick Curriculum Overview -->
+    <section class="container" style="padding: 0 1.5rem 5rem;">
+      <div style="text-align: center; max-width: 720px; margin: 0 auto 3.5rem;">
+        <span class="badge badge-purple" style="margin-bottom: 0.75rem;" data-i18n="section_track_badge">Structured Learning Tracks</span>
+        <h2 style="font-size: 2.3rem; margin-bottom: 0.85rem;" data-i18n="section_track_title">Master the Complete Computing Stack</h2>
+        <p data-i18n="section_track_sub">A rigorous, structured path engineered to bridge the gap between abstract academic theory and practical software engineering.</p>
+      </div>
+
+      <div class="grid-3">
+        <!-- Track 1: Foundations -->
+        <div class="card" id="card-foundations">
+          <div class="card-icon">⚡</div>
+          <span class="badge badge-cyan" style="margin-bottom: 0.5rem;">Semester 1</span>
+          <h3 class="card-title">Foundations & Logic</h3>
+          <p data-i18n="card_foundations_desc">Discrete mathematics, number systems, two's complement, Boolean algebra, and Big-O computational complexity.</p>
+          <div class="card-footer">
+            <span style="font-size: 0.82rem; color: var(--text-muted);">8-Bit Bit-Flipper</span>
+            <a href="foundations.html" class="btn btn-outline-cyan btn-sm" data-i18n="btn_explore">Explore Track →</a>
+          </div>
+        </div>
+
+        <!-- Track 2: Data Structures -->
+        <div class="card" id="card-data-structures">
+          <div class="card-icon purple">📦</div>
+          <span class="badge badge-purple" style="margin-bottom: 0.5rem;">Semester 2</span>
+          <h3 class="card-title">Data Structures</h3>
+          <p data-i18n="card_ds_desc">Continuous vs linked memory, Stacks, Queues, Binary Search Trees, Heaps, and Hash Table collision strategies.</p>
+          <div class="card-footer">
+            <span style="font-size: 0.82rem; color: var(--text-muted);">Interactive Sandbox</span>
+            <a href="data-structures.html" class="btn btn-outline-cyan btn-sm" data-i18n="btn_explore">Explore Track →</a>
+          </div>
+        </div>
+
+        <!-- Track 3: Algorithms -->
+        <div class="card" id="card-algorithms">
+          <div class="card-icon emerald">⚙️</div>
+          <span class="badge badge-emerald" style="margin-bottom: 0.5rem;">Semester 3</span>
+          <h3 class="card-title">Algorithms & Visualizer</h3>
+          <p data-i18n="card_algo_desc">Divide and conquer, Quick Sort, Merge Sort, Dijkstra's shortest path, Dynamic Programming, and step-by-step playback.</p>
+          <div class="card-footer">
+            <span style="font-size: 0.82rem; color: var(--text-muted);">Live Array Visualizer</span>
+            <a href="algorithms.html" class="btn btn-outline-cyan btn-sm" data-i18n="btn_explore">Explore Track →</a>
+          </div>
+        </div>
+
+        <!-- Track 4: Programming -->
+        <div class="card" id="card-programming">
+          <div class="card-icon amber">💻</div>
+          <span class="badge badge-amber" style="margin-bottom: 0.5rem;">Core Concepts</span>
+          <h3 class="card-title">Programming & Memory</h3>
+          <p data-i18n="card_prog_desc">Stack vs Heap memory management, garbage collection, OOP vs Functional paradigms, and compiler AST pipelines.</p>
+          <div class="card-footer">
+            <span style="font-size: 0.82rem; color: var(--text-muted);">Multi-Language Demos</span>
+            <a href="programming.html" class="btn btn-outline-cyan btn-sm" data-i18n="btn_explore">Explore Track →</a>
+          </div>
+        </div>
+
+        <!-- Track 5: Operating Systems -->
+        <div class="card" id="card-os">
+          <div class="card-icon">🖥️</div>
+          <span class="badge badge-cyan" style="margin-bottom: 0.5rem;">Systems</span>
+          <h3 class="card-title">Operating Systems</h3>
+          <p data-i18n="card_os_desc">Process lifecycle, CPU scheduling algorithms, virtual memory paging, multithreading, and deadlock prevention.</p>
+          <div class="card-footer">
+            <span style="font-size: 0.82rem; color: var(--text-muted);">CPU Scheduler Demo</span>
+            <a href="operating-systems.html" class="btn btn-outline-cyan btn-sm" data-i18n="btn_explore">Explore Track →</a>
+          </div>
+        </div>
+
+        <!-- Track 6: Networking -->
+        <div class="card" id="card-networking">
+          <div class="card-icon purple">🌐</div>
+          <span class="badge badge-purple" style="margin-bottom: 0.5rem;">Infrastructure</span>
+          <h3 class="card-title">Computer Networking</h3>
+          <p data-i18n="card_net_desc">The 7-Layer OSI model, TCP/IP handshake, DNS resolution architecture, HTTP/3 (QUIC), and CIDR subnet calculation.</p>
+          <div class="card-footer">
+            <span style="font-size: 0.82rem; color: var(--text-muted);">Packet Inspector</span>
+            <a href="networking.html" class="btn btn-outline-cyan btn-sm" data-i18n="btn_explore">Explore Track →</a>
+          </div>
+        </div>
+
+        <!-- Track 7: Databases -->
+        <div class="card" id="card-databases">
+          <div class="card-icon emerald">🗄️</div>
+          <span class="badge badge-emerald" style="margin-bottom: 0.5rem;">Data Systems</span>
+          <h3 class="card-title">Databases & SQL</h3>
+          <p data-i18n="card_db_desc">Relational modeling, Normalization (1NF to BCNF), ACID transaction isolation, B+ Tree indexing, and live SQL runner.</p>
+          <div class="card-footer">
+            <span style="font-size: 0.82rem; color: var(--text-muted);">Interactive SQL Sandbox</span>
+            <a href="databases.html" class="btn btn-outline-cyan btn-sm" data-i18n="btn_explore">Explore Track →</a>
+          </div>
+        </div>
+
+        <!-- Track 8: Specializations -->
+        <div class="card" id="card-specializations">
+          <div class="card-icon amber">🚀</div>
+          <span class="badge badge-amber" style="margin-bottom: 0.5rem;">Advanced Tracks</span>
+          <h3 class="card-title">Specializations & AI</h3>
+          <p data-i18n="card_specs_desc">Machine Learning, Deep Neural Networks, Modern Cryptography, Distributed Systems, Cloud Architecture, and Quantum basics.</p>
+          <div class="card-footer">
+            <span style="font-size: 0.82rem; color: var(--text-muted);">Career Roadmaps</span>
+            <a href="specializations.html" class="btn btn-outline-cyan btn-sm" data-i18n="btn_explore">Explore Track →</a>
+          </div>
+        </div>
+
+        <!-- Track 9: Resources & Cheat Sheets -->
+        <div class="card" id="card-resources">
+          <div class="card-icon">📚</div>
+          <span class="badge badge-cyan" style="margin-bottom: 0.5rem;">Library</span>
+          <h3 class="card-title">Curated Resources</h3>
+          <p data-i18n="card_res_desc">Hand-selected seminal textbooks, classic papers, printable Big-O complexity tables, Git cheatsheets, and interview prep.</p>
+          <div class="card-footer">
+            <span style="font-size: 0.82rem; color: var(--text-muted);">Downloadable Guides</span>
+            <a href="resources.html" class="btn btn-outline-cyan btn-sm" data-i18n="btn_explore">Explore Track →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Daily Challenge Teaser -->
+    <section class="container" style="margin-bottom: 5rem;">
+      <div class="visualizer-box" style="border-left: 4px solid var(--cyan);">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;">
+          <div>
+            <span class="badge badge-cyan" style="margin-bottom: 0.5rem;" data-i18n="daily_title">Daily CS Challenge</span>
+            <h3 style="font-size: 1.6rem; margin-bottom: 0.5rem;" data-i18n="daily_heading">Test Your Fundamentals Today</h3>
+            <p style="margin-bottom: 0; max-width: 600px;" data-i18n="daily_desc">
+              Earn +100 XP and boost your study streak by tackling daily multiple-choice challenges across algorithms, data structures, and computer architecture.
+            </p>
+          </div>
+          <div>
+            <a href="progress.html" class="btn btn-primary" data-i18n="daily_btn">Go to Dashboard & Daily Quiz →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal">
+    <div class="search-modal-card">
+      <div class="search-input-wrap">
+        <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="search-input" placeholder="Search algorithms, data structures, systems, SQL..." autocomplete="off">
+        <span class="kbd-shortcut">ESC</span>
+      </div>
+      <ul class="search-results-list" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Press <kbd class="kbd-shortcut">ESC</kbd> to exit</span>
+        <span>CS Academy Knowledge Index</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll to Top Button -->
+  <button id="scroll-top-btn" class="icon-btn" style="position: fixed; bottom: 2rem; right: 2rem; z-index: 900; opacity: 0; pointer-events: none;" title="Scroll to top">
+    ↑
+  </button>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-link">
+            <img src="logo.png" alt="CS Academy Logo" class="brand-logo-img">
+            <div class="brand-text">CS <span>Academy</span></div>
+          </a>
+          <p>An interactive open-source computer science portal built to empower aspiring software engineers, researchers, and tech pioneers.</p>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Curriculum</h4>
+          <ul class="footer-links">
+            <li><a href="foundations.html">Foundations & Logic</a></li>
+            <li><a href="data-structures.html">Data Structures</a></li>
+            <li><a href="algorithms.html">Algorithms Visualizer</a></li>
+            <li><a href="operating-systems.html">Operating Systems</a></li>
+            <li><a href="networking.html">Networking & Protocols</a></li>
+            <li><a href="databases.html">Databases & SQL</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Platform</h4>
+          <ul class="footer-links">
+            <li><a href="progress.html">Personal Dashboard</a></li>
+            <li><a href="specializations.html">Career Specializations</a></li>
+            <li><a href="resources.html">Textbooks & Papers</a></li>
+            <li><a href="about.html">About & Manifesto</a></li>
+            <li><a href="contact.html">Contact & Support</a></li>
+            <li><a href="404.html">404 Terminal Page</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">CS Newsletter</h4>
+          <p style="font-size: 0.88rem;">Receive weekly deep-dives into distributed systems, algorithms, and computing history.</p>
+          <form class="footer-newsletter" onsubmit="event.preventDefault(); showToast('Subscribed to CS Weekly! 🚀'); this.reset();">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit" class="btn btn-primary btn-sm" style="width: 100%;">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 CS Academy Project. Open source educational platform under MIT License.</div>
+        <div class="status-indicator">
+          <span class="status-dot"></span>
+          <span>Interactive Simulators Operational</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>

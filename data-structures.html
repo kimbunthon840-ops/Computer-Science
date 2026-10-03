@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Structures | CS Academy</title>
+  <meta name="description" content="Master Arrays, Linked Lists, Stacks, Queues, Binary Search Trees, Heaps, and Hash Tables with interactive visual sandboxes.">
+  <link rel="stylesheet" href="icons.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="responsive.css">
+  <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body>
+
+  <!-- Background Particle Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container navbar-container navbar">
+      <a href="index.html" class="brand-link">
+        <img src="logo.png" alt="CS Academy Logo" class="brand-logo-img">
+        <div class="brand-text">CS <span>Academy</span></div>
+      </a>
+      <nav>
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item has-dropdown">
+            <a href="foundations.html" class="nav-link active">Core Curriculum ▾</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item"><a href="foundations.html">⚡ Foundations & Logic</a></li>
+              <li class="dropdown-item"><a href="data-structures.html">📦 Data Structures</a></li>
+              <li class="dropdown-item"><a href="algorithms.html">⚙️ Algorithms & Visualizer</a></li>
+              <li class="dropdown-item"><a href="programming.html">💻 Programming & Memory</a></li>
+              <li class="dropdown-item"><a href="operating-systems.html">🖥️ Operating Systems</a></li>
+              <li class="dropdown-item"><a href="networking.html">🌐 Computer Networking</a></li>
+              <li class="dropdown-item"><a href="databases.html">🗄️ Databases & SQL</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="specializations.html" class="nav-link">Specializations</a></li>
+          <li class="nav-item"><a href="resources.html" class="nav-link">Resources</a></li>
+          <li class="nav-item"><a href="progress.html" class="nav-link">Dashboard</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <!-- Language Switcher Button -->
+        <button class="lang-switcher-btn" id="lang-toggle" title="Switch Language / ប្តូរភាសា">
+          <span>🇰🇭 ខ្មែរ / EN</span>
+        </button>
+        <button class="search-trigger-btn" id="search-trigger">
+          <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span>Search...</span>
+          <span class="kbd-shortcut">Ctrl K</span>
+        </button>
+        <a href="progress.html" class="progress-pill" id="header-progress-pill">Lvl 1 • 150 XP</a>
+        <button class="icon-btn" id="sfx-toggle" title="Toggle Cyber Sound Effects">🔊</button>
+        <button class="icon-btn" id="theme-toggle" aria-label="Toggle Theme">☀️</button>
+        <button class="mobile-toggle" id="mobile-toggle">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <div>
+        <div class="page-meta-tags" style="margin-bottom: 0.75rem;">
+          <span class="badge badge-purple">Module 02</span>
+          <span class="badge badge-cyan">Linear & Hierarchical</span>
+          <span class="badge badge-emerald">Estimated 60 min</span>
+        </div>
+        <h1 class="page-title">Data Structures & Memory Layout</h1>
+        <p class="page-desc">
+          How data is physically and logically arranged in RAM. Analyze pointer indirection, cache locality, amortized dynamic growth, and tree balancing invariants.
+        </p>
+      </div>
+      <div class="lesson-action-strip">
+        <button class="btn btn-outline-cyan btn-sm" id="mark-complete-btn" data-topic-id="data-structures">
+          <span>Mark as Complete (+100 XP)</span>
+        </button>
+        <button class="btn btn-secondary btn-sm" id="bookmark-btn" data-topic-id="data-structures">
+          <span>☆ Bookmark</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="container" style="padding-bottom: 5rem;">
+
+    <!-- Section 1: Arrays vs Linked Lists -->
+    <section id="arrays" style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">1. Arrays vs. Linked Lists: Memory Topology</h2>
+      <p>
+        The two fundamental ways to store sequential elements in computer memory differ drastically in hardware CPU cache efficiency and time complexity:
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="badge badge-cyan" style="margin-bottom: 0.5rem;">Contiguous Memory</div>
+          <h3 style="font-size: 1.25rem; color: var(--cyan); margin-bottom: 0.75rem;">Arrays & Dynamic Vectors</h3>
+          <p style="font-size: 0.92rem;">
+            Elements are laid out next to each other in physical RAM addresses. Accessing <code>arr[i]</code> requires simple pointer arithmetic: <code>base_address + (i * sizeof(element))</code>.
+          </p>
+          <ul style="padding-left: 1.2rem; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7;">
+            <li><strong>Random Access:</strong> <code>O(1)</code> constant time.</li>
+            <li><strong>CPU Cache Locality:</strong> Extremely high spatial locality; adjacent items are prefetched into L1/L2 cache lines automatically.</li>
+            <li><strong>Insertion / Deletion:</strong> <code>O(n)</code> due to shifting elements.</li>
+            <li><strong>Amortized Expansion:</strong> Dynamic arrays (C++ <code>vector</code>, Java <code>ArrayList</code>) double capacity when full, achieving amortized <code>O(1)</code> append.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="badge badge-purple" style="margin-bottom: 0.5rem;">Pointer Chaining</div>
+          <h3 style="font-size: 1.25rem; color: var(--purple); margin-bottom: 0.75rem;">Singly & Doubly Linked Lists</h3>
+          <p style="font-size: 0.92rem;">
+            Nodes live anywhere on the Heap, connected via forward (<code>next</code>) and backward (<code>prev</code>) pointers.
+          </p>
+          <ul style="padding-left: 1.2rem; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7;">
+            <li><strong>Random Access:</strong> <code>O(n)</code> (must traverse sequentially from <code>head</code>).</li>
+            <li><strong>Cache Performance:</strong> Poor due to scattered heap memory allocations causing frequent CPU cache misses.</li>
+            <li><strong>Head Insert / Delete:</strong> <code>O(1)</code> without shifting.</li>
+            <li><strong>Memory Overhead:</strong> Requires extra 8 bytes per 64-bit pointer per node.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Stacks & Queues Sandbox -->
+    <section id="stacks-queues" style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">2. Stacks (LIFO) & Queues (FIFO) Interactive Sandbox</h2>
+      <p>
+        Stacks follow Last-In, First-Out (used for function recursion, undo buffers, syntax parsing). Queues follow First-In, First-Out (used for process scheduling, bread-first search, network packet buffering).
+      </p>
+
+      <div class="visualizer-box">
+        <div class="visualizer-header">
+          <div>
+            <h3 style="font-size: 1.2rem; color: var(--cyan); margin-bottom: 0.25rem;">Live Memory Buffer Sandbox</h3>
+            <p style="font-size: 0.88rem; margin-bottom: 0;">Push, Pop, Enqueue, or Dequeue nodes and observe dynamic buffer states.</p>
+          </div>
+          <div class="visualizer-controls">
+            <button class="btn btn-outline-cyan btn-sm" id="stack-push-btn">Stack: Push()</button>
+            <button class="btn btn-secondary btn-sm" id="stack-pop-btn">Stack: Pop()</button>
+            <button class="btn btn-outline-cyan btn-sm" id="queue-push-btn">Queue: Enqueue()</button>
+            <button class="btn btn-secondary btn-sm" id="queue-pop-btn">Queue: Dequeue()</button>
+          </div>
+        </div>
+
+        <div class="ds-sandbox" id="ds-elements-container">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="visualizer-log" id="ds-status-text">
+          Interactive buffer initialized with 3 nodes. Ready for operations.
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Hash Tables -->
+    <section id="hash-tables" style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">3. Hash Tables & Collision Resolution</h2>
+      <p>
+        A Hash Table maps arbitrary keys to bucket indices using a hash function <code>hash(key) % capacity</code>, achieving average-case <code>O(1)</code> lookup, insertion, and deletion.
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h4 style="font-size: 1.15rem; color: var(--emerald); margin-bottom: 0.5rem;">Separate Chaining</h4>
+          <p style="font-size: 0.9rem;">
+            Each bucket points to a linked list or red-black tree (e.g. Java 8+ <code>HashMap</code> converts to a balanced tree when bucket chain length exceeds 8).
+          </p>
+          <div class="code-window">
+            <div class="code-header"><span class="code-title">Bucket Node Structure</span></div>
+            <div class="code-body">
+              <pre><span class="tok-keyword">struct</span> Node {
+  <span class="tok-type">string</span> key;
+  <span class="tok-type">int</span> val;
+  Node* next;
+};</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 style="font-size: 1.15rem; color: var(--amber); margin-bottom: 0.5rem;">Open Addressing (Probing)</h4>
+          <p style="font-size: 0.9rem;">
+            All entries reside directly within the array. On collision, probe alternative slots:
+          </p>
+          <ul style="padding-left: 1.25rem; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7;">
+            <li><strong>Linear Probing:</strong> <code>h(k, i) = (h(k) + i) % m</code> (vulnerable to primary clustering).</li>
+            <li><strong>Quadratic Probing:</strong> <code>h(k, i) = (h(k) + c₁i + c₂i²) % m</code>.</li>
+            <li><strong>Double Hashing:</strong> <code>h(k, i) = (h₁(k) + i · h₂(k)) % m</code>.</li>
+            <li><strong>Robin Hood Hashing:</strong> Steal slots from 'richer' entries to minimize maximum probe distance.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Data Structure Complexity Table -->
+    <section id="complexity-table" style="margin-bottom: 3.5rem;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">4. Data Structures Complexity Matrix</h2>
+      <div class="cs-table-wrap">
+        <table class="cs-table">
+          <thead>
+            <tr>
+              <th>Data Structure</th>
+              <th>Access</th>
+              <th>Search</th>
+              <th>Insertion</th>
+              <th>Deletion</th>
+              <th>Space</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Array</strong></td>
+              <td><code>O(1)</code></td>
+              <td><code>O(n)</code></td>
+              <td><code>O(n)</code></td>
+              <td><code>O(n)</code></td>
+              <td><code>O(n)</code></td>
+            </tr>
+            <tr>
+              <td><strong>Singly Linked List</strong></td>
+              <td><code>O(n)</code></td>
+              <td><code>O(n)</code></td>
+              <td><code>O(1)</code> (at head)</td>
+              <td><code>O(1)</code> (at head)</td>
+              <td><code>O(n)</code></td>
+            </tr>
+            <tr>
+              <td><strong>Stack / Queue</strong></td>
+              <td><code>O(n)</code></td>
+              <td><code>O(n)</code></td>
+              <td><code>O(1)</code></td>
+              <td><code>O(1)</code></td>
+              <td><code>O(n)</code></td>
+            </tr>
+            <tr>
+              <td><strong>Binary Search Tree</strong></td>
+              <td><code>O(log n)</code></td>
+              <td><code>O(log n)</code></td>
+              <td><code>O(log n)</code></td>
+              <td><code>O(log n)</code></td>
+              <td><code>O(n)</code></td>
+            </tr>
+            <tr>
+              <td><strong>Hash Table (avg)</strong></td>
+              <td>N/A</td>
+              <td><code>O(1)</code></td>
+              <td><code>O(1)</code></td>
+              <td><code>O(1)</code></td>
+              <td><code>O(n)</code></td>
+            </tr>
+            <tr>
+              <td><strong>Binary Heap (Priority Queue)</strong></td>
+              <td><code>O(1)</code> (peek)</td>
+              <td><code>O(n)</code></td>
+              <td><code>O(log n)</code></td>
+              <td><code>O(log n)</code></td>
+              <td><code>O(n)</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 5: Quiz -->
+    <section id="quiz">
+      <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem; color: #fff;">Knowledge Check: Data Structures</h2>
+      <p style="margin-bottom: 1.5rem;">Test your understanding of memory overhead, tree traversals, and collision resolution.</p>
+      <div class="quiz-widget" id="ds-quiz" data-quiz-category="data-structures"></div>
+    </section>
+
+  </main>
+
+  <!-- Global Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal">
+    <div class="search-modal-card">
+      <div class="search-input-wrap">
+        <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="search-input" placeholder="Search algorithms, data structures, systems, SQL..." autocomplete="off">
+        <span class="kbd-shortcut">ESC</span>
+      </div>
+      <ul class="search-results-list" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Press <kbd class="kbd-shortcut">ESC</kbd> to exit</span>
+        <span>CS Academy Knowledge Index</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 CS Academy Project. Open source educational platform under MIT License.</div>
+        <div class="status-indicator">
+          <span class="status-dot"></span>
+          <span>Data Structures Sandbox Operational</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>
